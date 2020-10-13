@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=CardDeck
+comment0.text=\n\ Write\ a\ description\ of\ class\ CardDeck\ here.\n\n\ @author\ (your\ name)\n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=
+comment1.target=void\ CardDeck()
+comment1.text=\n\ Constructor\ for\ objects\ of\ class\ CardDeck\n
+comment2.params=
+comment2.target=void\ getTopCard()
+comment3.params=
+comment3.target=void\ addBottomCard()
+numComments=4
