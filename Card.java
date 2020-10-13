@@ -23,9 +23,4 @@ public class Card
     public int getCardValue(){
         return this.value;
     }
-    
-    //getters
-    
-    //checks value is int
-
 }
