@@ -20,13 +20,12 @@ public class Player
     public int playerPosition;
     
     
-    public Player()
+    public Player(int position)
     {
         // array of current hand
         //copy constructor
-        playerPosition = this.playerPosition;
-        favouriteCard = this.favouriteCard;
-        playerDeck = this.createDeck();
+        playerPosition = position;
+        favouriteCard = position;
         playerHand = this.createPlayerHand();
     }
 
@@ -39,11 +38,6 @@ public class Player
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    
-    public CardDeck createDeck(){
-        playerDeck = new CardDeck();
-        return playerDeck;
-    }
     
     public Card[] createPlayerHand(){
         playerHand = new Card[4]; //array for 4 cards

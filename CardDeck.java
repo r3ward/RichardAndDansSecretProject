@@ -8,15 +8,18 @@
 public class CardDeck
 {
     public Card cardArray[];
+    public int deckPosition;
     
     /**
      * Constructor for objects of class CardDeck
      */
     //card deck needs to know what number it is assigned
-    public void CardDeck()
+    public CardDeck(int position)
     {
         // initialise instance variables
         Card cardArray[] = new Card[] {};
+        deckPosition = position;
+        
     }
     
     public void getTopCard(){

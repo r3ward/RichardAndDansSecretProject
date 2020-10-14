@@ -1,4 +1,11 @@
-import java.util.Scanner;  // Import the Scanner class
+
+import java.util.Scanner;
+import java.util.Arrays;
+import java.io.FileWriter;   // Import the FileWriter class
+import java.io.IOException;  // Import the IOException class to handle errors
+import java.io.File;
+import java.io.*;
+         // Import the Scanner class
 /**
  * Write a description of class CardGame here.
  *
@@ -22,16 +29,22 @@ public class CardGame
     
        // brain of the game
        Scanner myObj = new Scanner(System.in);
-       
+       //Create dealer to house all this bs in
        System.out.println("Please enter number of players:");
        int numberOfPlayers = myObj.nextInt();
        
        System.out.println("Please enter file name:");
        String nameOfFile = myObj.nextLine();
+       
+       String[] tester = cardArrayGenerator(CardGame.fileReader("CAtest.txt")); //generates and stores card
+       Player[] playerArray = new Player[numberOfPlayers];
+       CardDeck[] deckArray = new CardDeck[numberOfPlayers];
+       
+       
+       
       
        // GAME SETUP
        // get file.
-       // make array of cards (directly from file, check 8n cards ONLY).
        // make array of decks (empty).
        // make array of people.
        // distribute cards round robin into people's hands (4 cards each).
@@ -54,9 +67,70 @@ public class CardGame
       
     
     }
+    public static String fileReader(String nameOfFile)
+    {
+        try  
+            {  
+                File file=new File(nameOfFile);    //creates a new file instance  
+                FileReader fr=new FileReader(file);   
+                BufferedReader br=new BufferedReader(fr);  
+                StringBuffer sb=new StringBuffer();    
+                String line;  
+                while((line=br.readLine())!=null) {  
+                    sb.append(line);      //appends line to string buffer  
+                    sb.append("\n");     //line feed   
+                }  
+                fr.close();    //closes the stream and release the resources
+                return sb.toString();
+                }  
+        catch(IOException e)  
+           {  
+                e.printStackTrace();  
+                return null; ///add check for loader
+           } 
+       
+    }
     
-    public void cardDistribute()
+    public static String[] cardArrayGenerator(String sb){
+     
+        String[] cardArray = sb.split("\n");
+        System.out.println(cardArray.length); 
+        System.out.println("Array:");
+        System.out.println(Arrays.toString(cardArray)); 
+        return cardArray;
+    }
+    
+    public void generatePeople(Player[] playerArray) //maybe generate both
     {
         // initialise instance variables
+        int id = 0;
+        
+        while(id <= playerArray.length){
+            Player tempPlayer = new Player(id);
+            playerArray[id] = tempPlayer;
+            id++;
+        }
+ 
+    }
+    
+    public void generateDecks(CardDeck[] deckArray) //maybe generate both
+    {
+        // initialise instance variables
+        int id = 0;
+        
+        while(id <= deckArray.length){
+            CardDeck tempDeck = new CardDeck(id); //input id
+            deckArray[id] = tempDeck;
+            id++;
+        }
+ 
+    }
+    
+    
+    public void cardDistribute(int n)
+    {
+        // initialise instance variables
+       
+        
     }
 }
