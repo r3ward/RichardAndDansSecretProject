@@ -43,6 +43,19 @@ public class Player
         playerHand = new Card[4]; //array for 4 cards
         return playerHand;
     }
+
+    public void initialiseHand(Card card){
+        //  WE NEED TO TEST THIS
+        int counter = 0;
+        for (int i = 0; i < playerHand.length; i ++){
+            if (playerHand[i] != null){
+                counter ++;
+            }
+        }
+        if (counter < 4){
+            playerHand[counter] = card;
+        }
+    }
     
     public void addCard(){
         // get deck on left

@@ -1,11 +1,13 @@
-
+// last worked on : 20/10/2020
+// test card distribute and complete game setup stage.
 import java.util.Scanner;
 import java.util.Arrays;
 import java.io.FileWriter;   // Import the FileWriter class
 import java.io.IOException;  // Import the IOException class to handle errors
 import java.io.File;
 import java.io.*;
-         // Import the Scanner class
+// Import the Scanner class
+
 /**
  * Write a description of class CardGame here.
  *
@@ -36,18 +38,17 @@ public class CardGame
        System.out.println("Please enter file name:");
        String nameOfFile = myObj.nextLine();
        
-       String[] tester = cardArrayGenerator(CardGame.fileReader("CAtest.txt")); //generates and stores card
+       String[] cardArray = cardArrayGenerator(CardGame.fileReader("CAtest.txt")); //generates and stores card
        Player[] playerArray = new Player[numberOfPlayers];
        CardDeck[] deckArray = new CardDeck[numberOfPlayers];
+
        
        
-       
-      
        // GAME SETUP
-       // get file.
-       // make array of decks (empty).
-       // make array of people.
-       // distribute cards round robin into people's hands (4 cards each).
+       // get file. tick
+       // make array of decks (empty). tick
+       // make array of people. tick
+       // distribute cards round robin into people's hands (4 cards each). 
        // distribute cards to decks round robin, until card array empty (4 cards each).
        
        // BEGIN GAME
@@ -65,7 +66,6 @@ public class CardGame
        // terminate threads
       
       
-    
     }
     public static String fileReader(String nameOfFile)
     {
@@ -96,7 +96,8 @@ public class CardGame
         String[] cardArray = sb.split("\n");
         System.out.println(cardArray.length); 
         System.out.println("Array:");
-        System.out.println(Arrays.toString(cardArray)); 
+        System.out.println(Arrays.toString(cardArray));
+        // contains all of the cards
         return cardArray;
     }
     
@@ -127,10 +128,17 @@ public class CardGame
     }
     
     
-    public void cardDistribute(int n)
+    public void cardDistribute(Player[] playerArray, String[] cardArray)
     {
-        // initialise instance variables
-       
-        
+        // get cards from card array
+        // distribute cards to all players, 4 cards to each hand, 4 cards to deck
+        for(int c = 1; c < 5; c++){    
+            for(int i = 0; i < playerArray.length; i++){
+                Player player = playerArray[i];
+                int cardValue = Integer.parseInt(cardArray[i * c]);
+                Card card = new Card(cardValue);
+                player.initialiseHand(card);
+            }
+        }       
     }
 }
