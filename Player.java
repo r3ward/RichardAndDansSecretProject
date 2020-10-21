@@ -1,6 +1,8 @@
 import java.io.FileWriter;   // Import the FileWriter class
 import java.io.IOException;  // Import the IOException class to handle errors
 import java.io.File;  // Import the File class
+import java.util.Arrays;
+import java.util.ArrayList;
 
 /**
  * Write a description of class Player here.
@@ -15,7 +17,7 @@ public class Player extends Thread
      * Constructor for objects of class Player
      */
     public CardDeck playerDeck;
-    private Card[] playerHand;
+    private ArrayList<Card> playerHand;
     private int favouriteCard;
     public int playerPosition;
     public Thread personThread;
@@ -39,9 +41,16 @@ public class Player extends Thread
      * @return    the sum of x and y
      */
     
-    public Card[] createPlayerHand(){
-        playerHand = new Card[4]; //array for 4 cards
+    public ArrayList<Card> createPlayerHand(){
+        ArrayList<Card> playerHand = new ArrayList<Card>();
+        //playerHand = new Card[4]; //array for 4 cards
         return playerHand;
+    }
+
+    public void initialiseHand(Card card){
+        //  WE NEED TO TEST THIS
+        playerHand.add(card);
+        System.out.println(Arrays.toString(playerHand.toArray()));
     }
     
     public void addThread(Thread inputThread){
@@ -110,7 +119,7 @@ public class Player extends Thread
     
     // getters
     
-    public Card[] getPlayerHand(){
+    public ArrayList<Card> getPlayerHand(){
         return playerHand;
     }
     
