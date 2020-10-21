@@ -1,5 +1,5 @@
-// last worked on : 20/10/2020
-// test card distribute and complete game setup stage.
+// last worked on : 21/10/2020
+// next time: line 53
 import java.util.Scanner;
 import java.util.Arrays;
 import java.io.FileWriter;   // Import the FileWriter class
@@ -17,7 +17,7 @@ import java.io.*;
 public class CardGame
 {
     // instance variables - replace the example below with your own
-    
+
     // playerArray for order of players
     // deckArray for order of decks
     
@@ -38,20 +38,22 @@ public class CardGame
        System.out.println("Please enter file name:");
        String nameOfFile = myObj.nextLine();
        
-       String[] cardArray = cardArrayGenerator(CardGame.fileReader("CAtest.txt")); //generates and stores card
+       String[] cardArray = cardArrayGenerator(CardGame.fileReader("CAtest.txt", numberOfPlayers)); //generates and stores card
        Player[] playerArray = new Player[numberOfPlayers];
        CardDeck[] deckArray = new CardDeck[numberOfPlayers];
        generatePeople(playerArray);
-       cardDistribute(playerArray, cardArray);
+       cardDistribute(playerArray, cardArray, deckArray);
        
        //no requirement, can keep running
        //
        // GAME SETUP
-       // get file. tick
+       // get file. tick  
        // make array of decks (empty). tick
        // make array of people. tick
-       // distribute cards round robin into people's hands (4 cards each). 
-       // distribute cards to decks round robin, until card array empty (4 cards each).
+       // make threads  - DO THIS NEXT SESSION
+       // distribute cards round robin into people's hands (4 cards each). tick
+       // distribute cards to decks round robin, until card array empty (4 cards each). tick
+       // add a check to see if file has less than 8n cards. tick 
        
        // BEGIN GAME
        // open n threads, one for each player.
@@ -70,7 +72,7 @@ public class CardGame
       
       
     }
-    public static String fileReader(String nameOfFile) //load just 8n cards, no more, also check for non negative int
+    public static String fileReader(String nameOfFile, int numberOfPlayers) //load just 8n cards, no more, also check for non negative int
     {
         try  
             {  
@@ -79,10 +81,17 @@ public class CardGame
                 BufferedReader br=new BufferedReader(fr);  
                 StringBuffer sb=new StringBuffer();    
                 String line;  
-                while((line=br.readLine())!=null) {  
+                // ensure no more than 8n cards are loaded in
+                int counter = 8 * numberOfPlayers;
+                while((line=br.readLine())!=null || counter <= 0) {  
                     sb.append(line);      //appends line to string buffer  
-                    sb.append("\n");      //line feed   
+                    sb.append("\n");      //line feed  
+                    counter--;
                 }  
+                if (counter > 0){
+                    System.out.println("Whoops, your file does not contain enough cards!");
+                    // throw exception for not enough cards.
+                }
                 fr.close();    //closes the stream and release the resources
                 return sb.toString();
                 }  
@@ -130,20 +139,29 @@ public class CardGame
     }
     
     
-    public static void cardDistribute(Player[] playerArray, String[] cardArray)
+    public static void cardDistribute(Player[] playerArray, String[] cardArray, CardDeck[] deckArray)
     {
         // get cards from card array
         // distribute cards to all players, 4 cards to each hand, 4 cards to deck
      
         for(int c = 1; c < 5; c++){    
             for(int i = 0; i < playerArray.length; i++){
-               Player player = playerArray[i];
+                Player player = playerArray[i];
                 int cardValue = Integer.parseInt(cardArray[i * c]);
                 Card card = new Card(cardValue);
-               System.out.println("cardValue:"+ cardValue);
                 player.initialiseHand(card);
             }
-        }       
+        }  
+        
+        for(int c = 1; c < 5; c++){    
+            for(int i = 0; i < playerArray.length; i++){
+                CardDeck cardDeck = deckArray[i];
+                int cardValue = Integer.parseInt(cardArray[i * c]);
+                Card card = new Card(cardValue);
+                cardDeck.addTopCard(card);
+            }
+        }  
+        // loops will terminate after 8n cards
         
     }
 }

@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 /**
  * Write a description of class CardDeck here.
  *
@@ -7,7 +7,7 @@
  */
 public class CardDeck
 {
-    public Card cardArray[];
+    public ArrayList<Card> cardArray;
     public int deckPosition;
     
     /**
@@ -17,9 +17,14 @@ public class CardDeck
     public CardDeck(int position)
     {
         // initialise instance variables
-        Card cardArray[] = new Card[] {};
+        ArrayList<Card> cardArray = new ArrayList<Card>();
         deckPosition = position;
         
+    }
+
+    public void addTopCard(Card card){
+        // ad to list array
+        cardArray.add(card);
     }
     
     public void getTopCard(){
