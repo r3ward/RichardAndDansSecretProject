@@ -8,7 +8,7 @@ import java.io.File;  // Import the File class
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Player
+public class Player extends Thread
 {
 
     /**[https://github.com/richardpeterwardl/ConcurrencyCardGame.git](https://github.com/richardpeterwardl/ConcurrencyCardGame.git)
@@ -18,7 +18,7 @@ public class Player
     private Card[] playerHand;
     private int favouriteCard;
     public int playerPosition;
-    
+    public Thread personThread;
     
     public Player(int position)
     {
@@ -43,6 +43,13 @@ public class Player
         playerHand = new Card[4]; //array for 4 cards
         return playerHand;
     }
+    
+    public void addThread(Thread inputThread){
+        this.personThread = inputThread;
+        // get deck on left
+        // select top card
+        // add to hand
+    }   
     
     public void addCard(){
         // get deck on left

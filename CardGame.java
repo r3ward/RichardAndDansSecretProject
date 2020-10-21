@@ -39,9 +39,7 @@ public class CardGame
        String[] tester = cardArrayGenerator(CardGame.fileReader("CAtest.txt")); //generates and stores card
        Player[] playerArray = new Player[numberOfPlayers];
        CardDeck[] deckArray = new CardDeck[numberOfPlayers];
-       
-       
-       
+
       
        // GAME SETUP
        // get file.
