@@ -42,7 +42,10 @@ public class CardGame
        Player[] playerArray = new Player[numberOfPlayers];
        CardDeck[] deckArray = new CardDeck[numberOfPlayers];
        generatePeople(playerArray);
+       System.out.println("People Generated");
        cardDistribute(playerArray, cardArray, deckArray);
+       //runPlayerThreads(playerArray);
+       System.out.println("Threads complete");
        
        //no requirement, can keep running
        //
@@ -164,4 +167,12 @@ public class CardGame
         // loops will terminate after 8n cards
         
     }
+    
+    public static void runPlayerThreads(Player[] playerArray){
+        for(int i = 0; i < playerArray.length; i++){
+            Player player = playerArray[i];
+            player.runThread();
+        }
+    }
+
 }

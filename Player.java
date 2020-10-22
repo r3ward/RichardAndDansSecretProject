@@ -4,13 +4,14 @@ import java.io.File;  // Import the File class
 import java.util.Arrays;
 import java.util.ArrayList;
 
+
 /**
  * Write a description of class Player here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Player extends Thread
+public class Player
 {
 
     /**[https://github.com/richardpeterwardl/ConcurrencyCardGame.git](https://github.com/richardpeterwardl/ConcurrencyCardGame.git)
@@ -20,7 +21,7 @@ public class Player extends Thread
     private ArrayList<Card> playerHand;
     private int favouriteCard;
     public int playerPosition;
-    public Thread personThread;
+    public Thread playerThread;
     
     public Player(int position)
     {
@@ -29,6 +30,8 @@ public class Player extends Thread
         playerPosition = position;
         favouriteCard = position;
         playerHand = this.createPlayerHand();
+        MyThread playerThread = new MyThread();
+  	playerThread.start();
     }
 
     // methods
@@ -40,6 +43,14 @@ public class Player extends Thread
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
+    
+    class MyThread extends Thread {
+        
+        //maybe create all methods in here??
+        public void run(){
+           System.out.println("MyThread running"+ playerPosition);
+        }
+      }
     
     public ArrayList<Card> createPlayerHand(){
         ArrayList<Card> playerHand = new ArrayList<Card>();
@@ -53,11 +64,8 @@ public class Player extends Thread
         System.out.println(Arrays.toString(playerHand.toArray()));
     }
     
-    public void addThread(Thread inputThread){
-        this.personThread = inputThread;
-        // get deck on left
-        // select top card
-        // add to hand
+    public void runThread(){
+        this.playerThread.start();
     }   
     
     public void addCard(){
