@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Player extends Thread
+public class Player
 {
 
     /**[https://github.com/richardpeterwardl/ConcurrencyCardGame.git](https://github.com/richardpeterwardl/ConcurrencyCardGame.git)
@@ -49,9 +49,8 @@ public class Player extends Thread
 
     public void initialiseHand(Card card){
         //  WE NEED TO TEST THIS
-        // System.out.println("This should be printing");
         playerHand.add(card);
-        // System.out.println(Arrays.toString(playerHand.toArray()));
+        System.out.println(Arrays.toString(playerHand.toArray()));
     }
     
     public void addThread(Thread inputThread){
@@ -136,6 +135,10 @@ public class Player extends Thread
     
     public void setFavouriteCard(int favourite){ //may not need as favouriteCard may == playerPosition
         favouriteCard = favourite;
+    }
+
+    public int getPlayerPosition(){
+        return playerPosition;
     }
     
     // method to check if won

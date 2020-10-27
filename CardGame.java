@@ -119,8 +119,10 @@ public class CardGame
     {
         // initialise instance variables
         int id = 0;
+        System.out.println("Lenght of PA: "+playerArray.length);
         
         while(id < playerArray.length){
+            System.out.println(id);
             Player tempPlayer = new Player(id);
             playerArray[id] = tempPlayer;
             id++;
@@ -152,7 +154,7 @@ public class CardGame
                 int cardValue = Integer.parseInt(cardArray[i * c]);
                 Card card = new Card(cardValue);
                 player.initialiseHand(card);
-                // System.out.println("In here");
+                System.out.println(player.getPlayerPosition());
             }
         }  
         
