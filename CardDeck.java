@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class CardDeck
 {
-    public ArrayList<Card> cardArray;
+    public ArrayList<Card> cardDeck;
     public int deckPosition;
     
     /**
@@ -19,12 +19,22 @@ public class CardDeck
         // initialise instance variables
         ArrayList<Card> cardArray = new ArrayList<Card>();
         deckPosition = position;
-        
+        cardDeck = createCardDeck();
     }
 
     public void addTopCard(Card card){
-        // ad to list array
-        cardArray.add(card);
+        // add to list array
+        cardDeck.add(0, card);
+        // --- 
+    }
+    
+    public ArrayList<Card> createCardDeck(){
+        ArrayList<Card> cardDeck = new ArrayList<Card>();
+        return cardDeck;
+    }
+
+    public String getWord(){
+        return "This should be returned";
     }
     
     public void getTopCard(){
@@ -33,8 +43,8 @@ public class CardDeck
         // return card
     }
     
-    public void addBottomCard() {
-        // add card to bottom 
+    public void addBottomCard(Card card) {
+        // add card to bottom
+        cardDeck.add(card);
     }
-    
 }

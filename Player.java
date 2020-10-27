@@ -3,6 +3,7 @@ import java.io.IOException;  // Import the IOException class to handle errors
 import java.io.File;  // Import the File class
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Random;
 
 
 /**
@@ -21,21 +22,23 @@ public class Player
     private ArrayList<Card> playerHand;
     private int favouriteCard;
     public int playerPosition;
+    private int totalPlayers;
     public Thread playerThread;
     
-    public Player(int position)
+    public Player(int position, int totalPlayers)
     {
         // array of current hand
         //copy constructor
         playerPosition = position;
         favouriteCard = position;
+        totalPlayers = totalPlayers;
         playerHand = this.createPlayerHand();
         MyThread playerThread = new MyThread();
-  	playerThread.start();
+        playerThread.start();
+        playerDecision();
     }
 
     // methods
-    
     // add commenting (like below) to all methods
     /**
      * An example of a method - replace this comment with your own
@@ -54,7 +57,6 @@ public class Player
     
     public ArrayList<Card> createPlayerHand(){
         ArrayList<Card> playerHand = new ArrayList<Card>();
-        //playerHand = new Card[4]; //array for 4 cards
         return playerHand;
     }
 
@@ -78,6 +80,14 @@ public class Player
         //remove card from player hand
         // get deck on right
         // add card to bottom of deck
+        playerHand.remove(card);
+        int rightDeckIndex = 0;
+        if(playerPosition != totalPlayers){
+            rightDeckIndex = playerPosition++;
+        }
+        
+        CardDeck[] rightDeck = CardGame.getDeckArray();
+        rightDeck[rightDeckIndex].addBottomCard(card);
     }
     
     public boolean checkForWin(){
@@ -90,8 +100,21 @@ public class Player
         // use favouriteCard
         // go through playerHand, if no favourite card, keep the modal card
         // if no modal, remove at random
-        Card card = new Card(5);
-        return card;
+        Random random = new Random();
+        ArrayList<Card> discardCards = this.createPlayerHand();
+
+        for(int i = 0; i < playerHand.size(); i++){
+            Card chosenCard = playerHand.get(i);
+            if(chosenCard.getCardValue() != favouriteCard){
+                Card tempCard = playerHand.get(i);
+                discardCards.add(tempCard);
+            }
+        }
+        
+        Card discardCard = discardCards.get(random.nextInt(discardCards.size()));
+        System.out.println("Discard Card:"+ discardCard.getCardValue());
+        
+        return discardCard;
     }
     
     public void createFile(){
@@ -143,6 +166,10 @@ public class Player
     
     public void setFavouriteCard(int favourite){ //may not need as favouriteCard may == playerPosition
         favouriteCard = favourite;
+    }
+
+    public int getPlayerPosition(){
+        return playerPosition;
     }
     
     // method to check if won
