@@ -49,8 +49,9 @@ public class Player extends Thread
 
     public void initialiseHand(Card card){
         //  WE NEED TO TEST THIS
+        // System.out.println("This should be printing");
         playerHand.add(card);
-        System.out.println(Arrays.toString(playerHand.toArray()));
+        // System.out.println(Arrays.toString(playerHand.toArray()));
     }
     
     public void addThread(Thread inputThread){

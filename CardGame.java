@@ -41,7 +41,9 @@ public class CardGame
        String[] cardArray = cardArrayGenerator(CardGame.fileReader("CAtest.txt", numberOfPlayers)); //generates and stores card
        Player[] playerArray = new Player[numberOfPlayers];
        CardDeck[] deckArray = new CardDeck[numberOfPlayers];
+       // populate deckArray
        generatePeople(playerArray);
+       generateDecks(deckArray);
        cardDistribute(playerArray, cardArray, deckArray);
        
        //no requirement, can keep running
@@ -89,7 +91,7 @@ public class CardGame
                     counter--;
                 }  
                 if (counter > 0){
-                    System.out.println("Whoops, your file does not contain enough cards!");
+                    // System.out.println("Whoops, your file does not contain enough cards!");
                     // throw exception for not enough cards.
                 }
                 fr.close();    //closes the stream and release the resources
@@ -106,9 +108,9 @@ public class CardGame
     public static String[] cardArrayGenerator(String sb){
      
         String[] cardArray = sb.split("\n");
-        System.out.println(cardArray.length); 
-        System.out.println("Array:");
-        System.out.println(Arrays.toString(cardArray));
+        // System.out.println(cardArray.length); 
+        // System.out.println("Array:");
+        // System.out.println(Arrays.toString(cardArray));
         // contains all of the cards
         return cardArray;
     }
@@ -126,11 +128,11 @@ public class CardGame
  
     }
     
-    public void generateDecks(CardDeck[] deckArray) //maybe generate both
+    public static void generateDecks(CardDeck[] deckArray) //maybe generate both
     {
         // initialise instance variables
         int id = 0;
-        while(id <= deckArray.length){
+        while(id < deckArray.length){
             CardDeck tempDeck = new CardDeck(id); //input id
             deckArray[id] = tempDeck;
             id++;
@@ -150,6 +152,7 @@ public class CardGame
                 int cardValue = Integer.parseInt(cardArray[i * c]);
                 Card card = new Card(cardValue);
                 player.initialiseHand(card);
+                // System.out.println("In here");
             }
         }  
         
@@ -158,7 +161,9 @@ public class CardGame
                 CardDeck cardDeck = deckArray[i];
                 int cardValue = Integer.parseInt(cardArray[i * c]);
                 Card card = new Card(cardValue);
-                cardDeck.addTopCard(card);
+                // System.out.println("Card Deck:");
+                // System.out.println(cardDeck);
+                // cardDeck.addTopCard(card);
             }
         }  
         // loops will terminate after 8n cards

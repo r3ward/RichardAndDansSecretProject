@@ -19,12 +19,21 @@ public class CardDeck
         // initialise instance variables
         ArrayList<Card> cardArray = new ArrayList<Card>();
         deckPosition = position;
-        
     }
 
     public void addTopCard(Card card){
-        // ad to list array
-        cardArray.add(card);
+        // add to list array
+        // cardArray.add(card);
+        System.out.println("Hey friend :)");
+    }
+
+    public void initialiseHand(Card card){
+        //  WE NEED TO TEST THIS
+        System.out.println("Hey friend :)");
+    }
+
+    public String getWord(){
+        return "This should be returned";
     }
     
     public void getTopCard(){
@@ -36,5 +45,4 @@ public class CardDeck
     public void addBottomCard() {
         // add card to bottom 
     }
-    
 }
