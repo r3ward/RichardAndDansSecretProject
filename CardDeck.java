@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class CardDeck
 {
-    public ArrayList<Card> cardDeck;
+    public ArrayList<Card> cardArray;
     public int deckPosition;
     
     /**
@@ -19,32 +19,35 @@ public class CardDeck
         // initialise instance variables
         ArrayList<Card> cardArray = new ArrayList<Card>();
         deckPosition = position;
-        cardDeck = createCardDeck();
+        cardArray = createCardDeck();
     }
 
-    public void addTopCard(Card card){
+    public synchronized void addTopCard(Card card){
         // add to list array
-        cardDeck.add(0, card);
+        cardArray.add(0, card);
         // --- 
     }
     
     public ArrayList<Card> createCardDeck(){
-        ArrayList<Card> cardDeck = new ArrayList<Card>();
-        return cardDeck;
+        ArrayList<Card> cardArray = new ArrayList<Card>();
+        return cardArray;
     }
 
-    public String getWord(){
-        return "This should be returned";
-    }
-    
-    public void getTopCard(){
+  
+    public synchronized Card getTopCard(){
         // get top card in array
         // check not empty
-        // return card
+        if (cardArray.size() > 0){
+            Card topCard = cardArray.get(0);
+            cardArray.remove(0);
+            return topCard;
+        }
+        // fix this later
+        return null;
     }
     
-    public void addBottomCard(Card card) {
+    public synchronized void addBottomCard(Card card) {
         // add card to bottom
-        cardDeck.add(card);
+        cardArray.add(card);
     }
 }

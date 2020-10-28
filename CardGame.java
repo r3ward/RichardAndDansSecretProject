@@ -22,6 +22,8 @@ public class CardGame
     // deckArray for order of decks
     
     public static CardDeck[] deckArray;
+    public static boolean win;
+    public static int playerWinner;
     //card game asks players
     //card game inits players and puts them on the table
 
@@ -55,7 +57,7 @@ public class CardGame
        // get file. tick  
        // make array of decks (empty). tick
        // make array of people. tick
-       // make threads  - DO THIS NEXT SESSION
+       // make threads  tick
        // distribute cards round robin into people's hands (4 cards each). tick
        // distribute cards to decks round robin, until card array empty (4 cards each). tick
        // add a check to see if file has less than 8n cards. tick 
@@ -65,12 +67,38 @@ public class CardGame
        // ----while !player won-----
        // check if player has won. Change win flag.
        // run player strategy on player hand, determine which to discard. (randomly non preferantial card) Wait to be synchronised.
-       // 
        // all players discard card to deck on their right (player n+1).
        // all players select card from deck to their left (player n-1).
        // print moves to file (playerX_output.txt)
        // ----loop----
        
+       win = false;
+       
+       while(!win){
+           
+           // check all players for win
+           
+           // get all players to make their decisions 
+           // start threads
+           for(int i = 0; i < playerArray.length; i++){
+                Player player = playerArray[i];
+                player.playerDecision();
+           }
+           // get all players to disgard to their right
+           for(int i = 0; i < playerArray.length; i++){
+                Player player = playerArray[i];
+                Card throwawayCard = player.getThrowawayCard();
+                player.removeCard(throwawayCard);
+           }
+           // wait for threads to finish first part
+           // get all players to select from their left
+           for(int i = 0; i < playerArray.length; i++){
+                Player player = playerArray[i];
+                player.playerDecision();
+           }
+       }
+       
+    
        // END THE GAME
        // print results to console
        // terminate threads
@@ -111,10 +139,6 @@ public class CardGame
     public static String[] cardArrayGenerator(String sb){
      
         String[] cardArray = sb.split("\n");
-        // System.out.println(cardArray.length); 
-        // System.out.println("Array:");
-        // System.out.println(Arrays.toString(cardArray));
-        // contains all of the cards
         return cardArray;
     }
     
@@ -154,7 +178,7 @@ public class CardGame
             for(int i = 0; i < playerArray.length; i++){
                 Player player = playerArray[i];
                 int cardValue = Integer.parseInt(cardArray[i * c]);
-                Card card = new Card(cardValue);
+                final Card card = new Card(cardValue);
                 player.initialiseHand(card);
                 System.out.println(player.getPlayerPosition());
             }
@@ -164,7 +188,7 @@ public class CardGame
             for(int i = 0; i < playerArray.length; i++){
                 CardDeck cardDeck = deckArray[i];
                 int cardValue = Integer.parseInt(cardArray[i * c]);
-                Card card = new Card(cardValue);
+                final Card card = new Card(cardValue);
                 cardDeck.addTopCard(card);
             }
         }
@@ -182,4 +206,8 @@ public class CardGame
         return deckArray;
     }
 
+    public static void setWin(boolean win, int playerPosition){
+        win = win;
+        playerWinner = playerPosition;
+    }
 }

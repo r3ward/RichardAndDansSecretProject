@@ -4,6 +4,7 @@ import java.io.File;  // Import the File class
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 
 /**
@@ -24,18 +25,21 @@ public class Player
     public int playerPosition;
     private int totalPlayers;
     public Thread playerThread;
+    public boolean win;
+    public Card throwawayCard;
     
     public Player(int position, int totalPlayers)
     {
         // array of current hand
         //copy constructor
+        win = false;
         playerPosition = position;
         favouriteCard = position;
         totalPlayers = totalPlayers;
         playerHand = this.createPlayerHand();
         MyThread playerThread = new MyThread();
-        playerThread.start();
         playerDecision();
+        
     }
 
     // methods
@@ -53,7 +57,14 @@ public class Player
         public void run(){
            System.out.println("MyThread running"+ playerPosition);
         }
+        
+        
       }
+      
+    public void runThread(String methodName){
+        // multi use system to run methods within the thread
+        // playerThread(new MyRunnableObject(methodName)).start(); 
+    }
     
     public ArrayList<Card> createPlayerHand(){
         ArrayList<Card> playerHand = new ArrayList<Card>();
@@ -63,21 +74,32 @@ public class Player
     public void initialiseHand(Card card){
         //  WE NEED TO TEST THIS
         playerHand.add(card);
+        this.checkForWin();
         System.out.println(Arrays.toString(playerHand.toArray()));
     }
     
     public void runThread(){
         this.playerThread.start();
-    }   
+    }
     
-    public void addCard(){
+    public Thread getThread(){
+        return playerThread;
+    }
+    
+    public void addCard(Card card){
         // get deck on left
         // select top card
         // add to hand
+        CardDeck[] deckArray = CardGame.getDeckArray();
+        CardDeck leftDeck = deckArray[playerPosition];
+        Card newCard = leftDeck.getTopCard();
+        playerHand.add(newCard);
+        
+        this.checkForWin();
     }    
     
     public void removeCard(Card card){        
-        //remove card from player hand
+        // remove card from player hand
         // get deck on right
         // add card to bottom of deck
         playerHand.remove(card);
@@ -86,16 +108,37 @@ public class Player
             rightDeckIndex = playerPosition++;
         }
         
-        CardDeck[] rightDeck = CardGame.getDeckArray();
-        rightDeck[rightDeckIndex].addBottomCard(card);
+        CardDeck[] deckArray = CardGame.getDeckArray();
+        deckArray[rightDeckIndex].addBottomCard(card);
     }
     
-    public boolean checkForWin(){
+    public void checkForWin(){
         // check if you have won the game before continuing
-        return true; //or false
+        int tempCardValue = 0;
+        boolean win = true;
+        // need to test this
+        if (playerHand.size() == 4){
+            for(int i = 0; i < playerHand.size(); i++){
+                Card chosenCard = playerHand.get(i);
+                if (i != 0){
+                    if (tempCardValue != chosenCard.getCardValue()){
+                        win = false;
+                        break;
+                    }
+                }
+                tempCardValue = chosenCard.getCardValue();
+            }
+        }
+        
+        this.win = win;
+        if (win){
+            CardGame.setWin(true, playerPosition);
+        }
+        
+        // notify main thread a win has happened and end game
     }
     
-    public Card playerDecision(){
+    public void playerDecision(){
         // decide which card to remove based on strategy
         // use favouriteCard
         // go through playerHand, if no favourite card, keep the modal card
@@ -112,9 +155,7 @@ public class Player
         }
         
         Card discardCard = discardCards.get(random.nextInt(discardCards.size()));
-        System.out.println("Discard Card:"+ discardCard.getCardValue());
-        
-        return discardCard;
+        this.throwawayCard = discardCard;
     }
     
     public void createFile(){
@@ -172,13 +213,14 @@ public class Player
         return playerPosition;
     }
     
+    public Card getThrowawayCard(){
+        return throwawayCard;
+    }
+    
     // method to check if won
     
     //card hierrachy
     //decision making
 
     //setters, getters
-    
-    
-    
 }
