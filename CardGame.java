@@ -6,6 +6,7 @@ import java.io.FileWriter;   // Import the FileWriter class
 import java.io.IOException;  // Import the IOException class to handle errors
 import java.io.File;
 import java.io.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 // Import the Scanner class
 
 /**
@@ -22,8 +23,9 @@ public class CardGame
     // deckArray for order of decks
     
     public static CardDeck[] deckArray;
-    public static boolean win;
+    public static AtomicBoolean win;
     public static int playerWinner;
+    public static Player[] playerArray;
     //card game asks players
     //card game inits players and puts them on the table
 
@@ -42,12 +44,13 @@ public class CardGame
        //String nameOfFile = myObj.nextLine();
        
        String[] cardArray = cardArrayGenerator(CardGame.fileReader("CAtest.txt", numberOfPlayers)); //generates and stores card
-       Player[] playerArray = new Player[numberOfPlayers];
+       playerArray = new Player[numberOfPlayers];
        CardDeck[] deckArray = new CardDeck[numberOfPlayers];
        
        generateDecks(deckArray);
        generatePeople(playerArray, numberOfPlayers);
        cardDistribute(playerArray, cardArray, deckArray);
+       Dealer dealer = new Dealer();
 
        System.out.println("Threads complete");
        
@@ -72,37 +75,13 @@ public class CardGame
        // print moves to file (playerX_output.txt)
        // ----loop----
        
-       win = false;
+       win.set(false);
        
-       while(!win){
-           
-           // check all players for win
-           
-           // get all players to make their decisions 
-           // start threads
-           for(int i = 0; i < playerArray.length; i++){
-                Player player = playerArray[i];
-                player.playerDecision();
-           }
-           // get all players to disgard to their right
-           for(int i = 0; i < playerArray.length; i++){
-                Player player = playerArray[i];
-                Card throwawayCard = player.getThrowawayCard();
-                player.removeCard(throwawayCard);
-           }
-           // wait for threads to finish first part
-           // get all players to select from their left
-           for(int i = 0; i < playerArray.length; i++){
-                Player player = playerArray[i];
-                player.playerDecision();
-           }
+       while(win.get() == false){
+           dealer.gameStateIterate();
        }
        
-    
-       // END THE GAME
-       // print results to console
-       // terminate threads
-      
+       System.out.println("Winner is :" + playerWinner);
       
     }
     public static String fileReader(String nameOfFile, int numberOfPlayers) //load just 8n cards, no more, also check for non negative int
@@ -166,9 +145,13 @@ public class CardGame
             deckArray[id] = tempDeck;
             id++;
         }
+        System.out.println("Card Deck Array___>>>>>:" + deckArray);
  
     }
     
+    public static CardDeck[] getDeckArray(){
+        return deckArray;
+    }
     public static void cardDistribute(Player[] playerArray, String[] cardArray, CardDeck[] deckArray)
     {
         // get cards from card array
@@ -189,22 +172,22 @@ public class CardGame
                 CardDeck cardDeck = deckArray[i];
                 int cardValue = Integer.parseInt(cardArray[i * c]);
                 final Card card = new Card(cardValue);
+                System.out.println("Card Deck!!! :" + cardDeck.cardArray.size());
                 cardDeck.addTopCard(card);
             }
         }
-
     }
     
     public static void runPlayerThreads(Player[] playerArray){
         for(int i = 0; i < playerArray.length; i++){
             Player player = playerArray[i];
-            player.runThread();
+            player.startThread();
         }
     }
     
-    public static CardDeck[] getDeckArray(){
-        return deckArray;
-    }
+    //public static CardDeck[] getDeckArray(){
+    //    return deckArray;
+    //}
 
     public static void setWin(boolean win, int playerPosition){
         win = win;

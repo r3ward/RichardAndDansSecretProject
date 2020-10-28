@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.CountDownLatch; // maybe get rid
 
 
 /**
@@ -27,6 +29,8 @@ public class Player
     public Thread playerThread;
     public boolean win;
     public Card throwawayCard;
+    private int task; //set enum
+
     
     public Player(int position, int totalPlayers)
     {
@@ -38,7 +42,6 @@ public class Player
         totalPlayers = totalPlayers;
         playerHand = this.createPlayerHand();
         MyThread playerThread = new MyThread();
-        playerDecision();
         
     }
 
@@ -55,11 +58,51 @@ public class Player
         
         //maybe create all methods in here??
         public void run(){
-           System.out.println("MyThread running"+ playerPosition);
+            //CyclicBarrier temp = Dealer.gate;
+            
+            if(task == 0){
+                playerDecision();
+                removeCard(throwawayCard);
+                task = 1;
+            }
+            else if(task == 1){
+                addCard();
+                task = 0;
+            }
+            
+           Thread.yield();
         }
-        
-        
+  
       }
+      
+     class MyThread2 implements Runnable
+    {
+        CountDownLatch latch;
+        public MyThread2(CountDownLatch latch) 
+        {
+            this.latch = latch;
+        }
+        @Override
+        public void run() 
+        {
+            try 
+            {
+                latch.await();          //The thread keeps waiting till it is informed
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            
+            if(task == 0){
+                playerDecision();
+                removeCard(throwawayCard);
+                task = 1;
+            }
+            else if(task == 1){
+                addCard();
+                task = 0;
+            }
+        }
+    }
       
     public void runThread(String methodName){
         // multi use system to run methods within the thread
@@ -78,7 +121,7 @@ public class Player
         System.out.println(Arrays.toString(playerHand.toArray()));
     }
     
-    public void runThread(){
+    public void startThread(){
         this.playerThread.start();
     }
     
@@ -86,7 +129,7 @@ public class Player
         return playerThread;
     }
     
-    public void addCard(Card card){
+    public void addCard(){
         // get deck on left
         // select top card
         // add to hand

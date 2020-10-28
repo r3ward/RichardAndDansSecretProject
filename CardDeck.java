@@ -21,11 +21,16 @@ public class CardDeck
         deckPosition = position;
         cardArray = createCardDeck();
     }
+    
+    public int getDeckPosition(){
+        return this.deckPosition;
+    }
 
     public synchronized void addTopCard(Card card){
-        // add to list array
+
         cardArray.add(0, card);
-        // --- 
+        System.out.println("top card added");
+
     }
     
     public ArrayList<Card> createCardDeck(){
