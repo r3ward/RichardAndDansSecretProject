@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 /**
  * Write a description of class CardDeck here.
  *
@@ -17,7 +18,7 @@ public class CardDeck
     public CardDeck(int position)
     {
         // initialise instance variables
-        ArrayList<Card> cardArray = new ArrayList<Card>();
+        cardArray = new ArrayList<Card>();
         deckPosition = position;
         cardArray = createCardDeck();
     }
@@ -27,10 +28,8 @@ public class CardDeck
     }
 
     public synchronized void addTopCard(Card card){
-
         cardArray.add(0, card);
-        System.out.println("top card added");
-
+        System.out.println("deck at "+ deckPosition + " : " + Arrays.toString(getCardDeckValues()));
     }
     
     public ArrayList<Card> createCardDeck(){
@@ -54,5 +53,18 @@ public class CardDeck
     public synchronized void addBottomCard(Card card) {
         // add card to bottom
         cardArray.add(card);
+    }
+    
+    public ArrayList<Card> getCardArray(){
+        return cardArray;
+    }
+    
+    public int[] getCardDeckValues(){
+        int[] playerDeckValues = new int[cardArray.size()];
+        for(int i=0; i < cardArray.size(); i++) {
+            int value = cardArray.get(i).getCardValue();
+            playerDeckValues[i] = value;
+        }
+        return playerDeckValues;
     }
 }

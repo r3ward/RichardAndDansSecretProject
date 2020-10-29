@@ -1,12 +1,7 @@
-import java.io.FileWriter;   // Import the FileWriter class
-import java.io.IOException;  // Import the IOException class to handle errors
-import java.io.File;  // Import the File class
-import java.util.Arrays;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.CyclicBarrier;
-import java.util.Set;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Write a description of class Dealer here.
@@ -19,15 +14,37 @@ public class Dealer
 
     //public static CyclicBarrier gate;
     //Set<Thread> threadSet;
+    public AtomicBoolean stateFlag;
     
     public Dealer()
     {
         // initialise instance variables
-        int x = 0;
+       stateFlag = new AtomicBoolean(false);
+        
     }
     
-    public void gameStateIterate(){
-        CardGame.runPlayerThreads(CardGame.playerArray);
+    public void gameStateIterate(int numberOfPlayers){
+        
+        CountDownLatch latch = new CountDownLatch(numberOfPlayers); // coundown from 3 to 0
+
+        ExecutorService executor = Executors.newFixedThreadPool(numberOfPlayers); // 3 Threads in pool
+        
+        Player[] playerArray = CardGame.getPlayerArray();
+        
+        for(int i=0; i < playerArray.length; i++) {
+            Player player = playerArray[i];
+            player.makeProcessor(latch);
+            executor.submit(player.playerProcessor); // ref to latch. each time call new Processes latch will count down by 1
+        }
+
+        try {
+            latch.await();  // wait until latch counted down to 0
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Completed.");
+        
     }
 
     /**
@@ -44,4 +61,5 @@ public class Dealer
      *   }
      */
     
+    // https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CountDownLatch.html used for inspo
 }

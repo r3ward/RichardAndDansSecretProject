@@ -1,8 +1,4 @@
-// last worked on : 21/10/2020
-// next time: line 53
 import java.util.Scanner;
-import java.util.Arrays;
-import java.io.FileWriter;   // Import the FileWriter class
 import java.io.IOException;  // Import the IOException class to handle errors
 import java.io.File;
 import java.io.*;
@@ -23,9 +19,11 @@ public class CardGame
     // deckArray for order of decks
     
     public static CardDeck[] deckArray;
+    public static Player[] playerArray;
     public static AtomicBoolean win;
     public static int playerWinner;
-    public static Player[] playerArray;
+    public static int numberOfPlayers;
+    
     //card game asks players
     //card game inits players and puts them on the table
 
@@ -38,22 +36,42 @@ public class CardGame
        Scanner myObj = new Scanner(System.in);
        //Create dealer to house all this bs in
        System.out.println("Please enter number of players:");
-       int numberOfPlayers = myObj.nextInt();
+       numberOfPlayers = myObj.nextInt();
+       myObj.close();
        
        //System.out.println("Please enter file name:");
        //String nameOfFile = myObj.nextLine();
-       
+       win = new AtomicBoolean(false);
+    
        String[] cardArray = cardArrayGenerator(CardGame.fileReader("CAtest.txt", numberOfPlayers)); //generates and stores card
        playerArray = new Player[numberOfPlayers];
-       CardDeck[] deckArray = new CardDeck[numberOfPlayers];
+       deckArray = new CardDeck[numberOfPlayers];
        
+       // make decks
        generateDecks(deckArray);
+       // make people
        generatePeople(playerArray, numberOfPlayers);
+       // distribute cards to decks and people
        cardDistribute(playerArray, cardArray, deckArray);
-       Dealer dealer = new Dealer();
-
-       System.out.println("Threads complete");
        
+       
+       Dealer dealer = new Dealer();
+       
+       
+       // runPlayerThreads(playerArray);
+       int counter = 0;
+       // flag for win
+       
+       while(win.get() == false){
+           if (counter % 2 == 0){
+               System.out.println("Round " + counter/2);
+            }
+           // flag for which stage we are in
+           dealer.gameStateIterate(numberOfPlayers);
+           counter++;
+       }
+       
+            
        //no requirement, can keep running
        //
        // GAME SETUP
@@ -75,15 +93,13 @@ public class CardGame
        // print moves to file (playerX_output.txt)
        // ----loop----
        
-       win.set(false);
        
-       while(win.get() == false){
-           dealer.gameStateIterate();
-       }
+       // terminate all threads
+       System.out.println("Winner is : " + playerWinner);
        
-       System.out.println("Winner is :" + playerWinner);
       
     }
+    
     public static String fileReader(String nameOfFile, int numberOfPlayers) //load just 8n cards, no more, also check for non negative int
     {
         try  
@@ -95,13 +111,19 @@ public class CardGame
                 String line;  
                 // ensure no more than 8n cards are loaded in
                 int counter = 8 * numberOfPlayers;
+                System.out.println("Reading file...");
                 while((line=br.readLine())!=null || counter <= 0) {  
                     sb.append(line);      //appends line to string buffer  
                     sb.append("\n");      //line feed  
                     counter--;
+                    System.out.println(counter);
+                    if(counter == 0){
+                        break;
+                    }
                 }  
                 if (counter > 0){
-                    // System.out.println("Whoops, your file does not contain enough cards!");
+                    System.out.println("Whoops, your file does not contain enough cards!");
+                    System.out.println("Add " + counter + " more card(s)");
                     // throw exception for not enough cards.
                 }
                 fr.close();    //closes the stream and release the resources
@@ -125,11 +147,10 @@ public class CardGame
     {
         // initialise instance variables
         int id = 0;
-        System.out.println("Lenght of PA: "+playerArray.length);
-        
+        System.out.println("Lenght of PA: " + playerArray.length);
+        System.out.println("Total Players: " + numberOfPlayers);
         while(id < playerArray.length){
-            System.out.println(id);
-            Player tempPlayer = new Player(id,numberOfPlayers);
+            Player tempPlayer = new Player(id, numberOfPlayers);
             playerArray[id] = tempPlayer;
             id++;
         }
@@ -144,53 +165,55 @@ public class CardGame
             CardDeck tempDeck = new CardDeck(id); //input id
             deckArray[id] = tempDeck;
             id++;
-        }
-        System.out.println("Card Deck Array___>>>>>:" + deckArray);
- 
+        } 
     }
     
     public static CardDeck[] getDeckArray(){
         return deckArray;
     }
+    
+    public static Player[] getPlayerArray(){
+        return playerArray;
+    }
+    
     public static void cardDistribute(Player[] playerArray, String[] cardArray, CardDeck[] deckArray)
     {
         // get cards from card array
         // distribute cards to all players, 4 cards to each hand, 4 cards to deck
-     
-        for(int c = 1; c < 5; c++){    
+        int cardCounter = 0;
+        
+        for(int c = 0; c < 4; c++){
             for(int i = 0; i < playerArray.length; i++){
                 Player player = playerArray[i];
-                int cardValue = Integer.parseInt(cardArray[i * c]);
+                int cardValue = Integer.parseInt(cardArray[cardCounter]);
                 final Card card = new Card(cardValue);
                 player.initialiseHand(card);
-                System.out.println(player.getPlayerPosition());
+                cardCounter++;
             }
-        }  
+        }
         
-        for(int c = 1; c < 5; c++){    
+        
+        
+        for(int c = 0; c < 4; c++){    
             for(int i = 0; i < playerArray.length; i++){
                 CardDeck cardDeck = deckArray[i];
-                int cardValue = Integer.parseInt(cardArray[i * c]);
+                int cardValue = Integer.parseInt(cardArray[cardCounter]);
                 final Card card = new Card(cardValue);
-                System.out.println("Card Deck!!! :" + cardDeck.cardArray.size());
                 cardDeck.addTopCard(card);
+                cardCounter++;
             }
         }
+        
+        System.out.println("Total cards added : " + cardCounter);
     }
-    
-    public static void runPlayerThreads(Player[] playerArray){
-        for(int i = 0; i < playerArray.length; i++){
-            Player player = playerArray[i];
-            player.startThread();
-        }
-    }
+   
     
     //public static CardDeck[] getDeckArray(){
     //    return deckArray;
     //}
 
-    public static void setWin(boolean win, int playerPosition){
-        win = win;
+    public static void setWin(boolean winBool, int playerPosition){
+        win.set(winBool);
         playerWinner = playerPosition;
     }
 }
