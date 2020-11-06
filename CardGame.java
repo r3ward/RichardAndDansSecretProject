@@ -13,19 +13,13 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public class CardGame
 {
-    // instance variables - replace the example below with your own
-
-    // playerArray for order of players
-    // deckArray for order of decks
     
     public static CardDeck[] deckArray;
     public static Player[] playerArray;
     public static AtomicBoolean win;
     public static int playerWinner;
     public static int numberOfPlayers;
-    
-    //card game asks players
-    //card game inits players and puts them on the table
+
 
     /**
      * Constructor for objects of class CardGame
@@ -99,6 +93,7 @@ public class CardGame
        
       
     }
+    
     
     public static String fileReader(String nameOfFile, int numberOfPlayers) //load just 8n cards, no more, also check for non negative int
     {
@@ -192,8 +187,7 @@ public class CardGame
             }
         }
         
-        
-        
+
         for(int c = 0; c < 4; c++){    
             for(int i = 0; i < playerArray.length; i++){
                 CardDeck cardDeck = deckArray[i];
@@ -206,11 +200,6 @@ public class CardGame
         
         System.out.println("Total cards added : " + cardCounter);
     }
-   
-    
-    //public static CardDeck[] getDeckArray(){
-    //    return deckArray;
-    //}
 
     public static void setWin(boolean winBool, int playerPosition){
         win.set(winBool);
