@@ -4,6 +4,8 @@ import java.io.File;  // Import the File class
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.CountDownLatch; // maybe get rid
 
 /**
@@ -15,9 +17,10 @@ import java.util.concurrent.CountDownLatch; // maybe get rid
 public class Player
 {
 
-    /**
+    /**[https://github.com/richardpeterwardl/ConcurrencyCardGame.git](https://github.com/richardpeterwardl/ConcurrencyCardGame.git)
      * Constructor for objects of class Player
      */
+    private CountDownLatch latch;
     public CardDeck playerDeck;
     private ArrayList<Card> playerHand;
     private int favouriteCard;
@@ -28,19 +31,14 @@ public class Player
     private Task task;
     public Processor playerProcessor;
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
+    
     public Player(int position, int totalPlayers)
     {
         // array of current hand
         //copy constructor
         win = false;
         playerPosition = position;
-        favouriteCard = position + 1;
+        favouriteCard = position;
         setTotalPlayers(totalPlayers);
         playerHand = this.createPlayerHand();
         task = Task.DISCARD;
@@ -48,7 +46,8 @@ public class Player
         
     }
 
-
+    // methods
+    // add commenting (like below) to all methods
     /**
      * An example of a method - replace this comment with your own
      *
@@ -60,23 +59,11 @@ public class Player
         playerProcessor = new Processor(latch);
     }
     
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
     
     public Processor getProcessor(){
         return playerProcessor;
     }
     
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
     public int[] getPlayerHandValues(){
         int[] playerHandValues = new int[playerHand.size()];
         for(int i=0; i < playerHand.size(); i++) {
@@ -86,12 +73,7 @@ public class Player
         return playerHandValues;
     }    
     
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
+    
     class Processor implements Runnable {
         private CountDownLatch latch;
     
@@ -106,7 +88,7 @@ public class Player
                     Card throwawayCard = playerDecision();
                     removeCard(throwawayCard, getTotalPlayers());
                     task = Task.PICKUP;
-                    writeToFile("Player " + playerPosition + " current hand: " + Arrays.toString(getPlayerHandValues()));
+                    writeToFile("Player " + playerPosition  + " current hand: " + Arrays.toString(getPlayerHandValues()));
                     System.out.println("Player " + playerPosition + " current hand: " + Arrays.toString(getPlayerHandValues()));
                     break;
                 case PICKUP:
@@ -121,65 +103,30 @@ public class Player
         }
     }
     
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
     public void setTotalPlayers (int totalPlayers){
         this.totalPlayers = totalPlayers;
     }
     
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
     public int getTotalPlayers(){
         return this.totalPlayers;
     }
-    
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
+      
     public void runThread(String methodName){
         // multi use system to run methods within the thread
         // playerThread(new MyRunnableObject(methodName)).start(); 
     }
     
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
     public ArrayList<Card> createPlayerHand(){
         ArrayList<Card> playerHand = new ArrayList<Card>();
         return playerHand;
     }
-    
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
+
     public void initialiseHand(Card card){
         playerHand.add(0, card);
         this.checkForWin();
     }
     
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
+    
     public void addCard(){
         // get deck on left
         // select top card
@@ -193,12 +140,6 @@ public class Player
         this.checkForWin();
     }    
     
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
     public void removeCard(Card card, int totalPlayers){        
         // remove card from player hand
         playerHand.remove(card);
@@ -216,12 +157,6 @@ public class Player
         writeToFile("Player " + playerPosition + " discards a " + card.getCardValue() + " to deck " + rightDeckIndex);
     }
     
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
     public void checkForWin(){
         // check if you have won the game before continuing
         int tempCardValue = 0;
@@ -248,20 +183,16 @@ public class Player
         this.win = win;
         
         if (win){
-            CardGame.setWin(win, playerPosition);
             writeToFile("Player " + playerPosition + " has won.");
             writeToFile("Player " + playerPosition + " WINNING hand : " + Arrays.toString(getPlayerHandValues()));
             System.out.println("Player " + playerPosition + " has won.");
             System.out.println("Player " + playerPosition + " WINNING hand : " + Arrays.toString(getPlayerHandValues()));
+            CardGame.setWin(win, playerPosition);
         }
+        
+        // notify main thread a win has happened and end game
     }
     
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
     public Card playerDecision(){
         // decide which card to remove based on strategy
         // use favouriteCard
@@ -282,12 +213,6 @@ public class Player
         return discardCard;
     }
     
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
     public void createFile(){
         try {
           File myObj = new File("player" + playerPosition  + ".txt");
@@ -303,12 +228,6 @@ public class Player
         
     }
     
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
     public void writeToFile(String message){
         try {
           FileWriter myWriter = new FileWriter("player" + playerPosition  + ".txt", true);
@@ -321,54 +240,35 @@ public class Player
         }
     }    
     
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
+    // getters
+    
     public ArrayList<Card> getPlayerHand(){
         return playerHand;
     }
     
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
     public CardDeck getPlayerDeck(){
         return playerDeck;
     }
     
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
+    // setters
+    
     public void setPlayerPosition(int position){
-        this.playerPosition = position;
+        final int playerPosition = position;
     }
     
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
     public void setFavouriteCard(int favourite){ //may not need as favouriteCard may == playerPosition
         favouriteCard = favourite;
     }
-    
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
+
     public int getPlayerPosition(){
         return playerPosition;
     }
+    
+    
+    // method to check if won
+    
+    //card hierrachy
+    //decision making
 
+    //setters, getters
 }

@@ -1,4 +1,9 @@
+//// last worked on : 21/10/2020
+// next time: line 53
 import java.util.Scanner;
+import java.util.Arrays;
+import java.util.InputMismatchException;
+import java.io.FileWriter;   // Import the FileWriter class
 import java.io.IOException;  // Import the IOException class to handle errors
 import java.io.File;
 import java.io.*;
@@ -13,31 +18,66 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public class CardGame
 {
+    // instance variables - replace the example below with your own
+
+    // playerArray for order of players
+    // deckArray for order of decks
     
     public static CardDeck[] deckArray;
     public static Player[] playerArray;
     public static AtomicBoolean win;
     public static int playerWinner;
     public static int numberOfPlayers;
-
+    
+    //card game asks players
+    //card game inits players and puts them on the table
 
     /**
      * Constructor for objects of class CardGame
      */
     public static void main(String[] args){
     
-       // brain of the game
-       Scanner myObj = new Scanner(System.in);
-       //Create dealer to house all this bs in
-       System.out.println("Please enter number of players:");
-       numberOfPlayers = myObj.nextInt();
-       myObj.close();
+  
+       while(true){
+           Scanner myObj = new Scanner(System.in);
+           System.out.println("Please enter number of players:");
+           try{
+               numberOfPlayers = myObj.nextInt();
+               if (numberOfPlayers < 0){
+                   // maybe just continue loop and don't throw an exception
+                   System.out.println("Please enter an Integer value greater than 0.");
+               }
+               else{
+                   break;
+               }
+            } catch (InputMismatchException e){
+                System.out.println("Please enter an Integer value greater than 0.");
+           }
+       }
        
        //System.out.println("Please enter file name:");
        //String nameOfFile = myObj.nextLine();
        win = new AtomicBoolean(false);
-    
-       String[] cardArray = cardArrayGenerator(CardGame.fileReader("CAtest.txt", numberOfPlayers)); //generates and stores card
+       String fileName;
+       while(true){
+           Scanner myObj = new Scanner(System.in);
+           System.out.println("Please enter file name:");
+           try{
+               fileName = myObj.nextLine();
+               if (fileName.length() == 0){
+                   // maybe just continue loop and don't throw an exception
+                   System.out.println("Please enter the file name.");
+               }
+               else{
+                   break;
+               }
+            } catch (InputMismatchException e){
+                System.out.println("Please enter the file name.");
+           }
+       }
+       
+       // CAtest.txt
+       String[] cardArray = cardArrayGenerator(CardGame.fileReader(fileName, numberOfPlayers)); //generates and stores card
        playerArray = new Player[numberOfPlayers];
        deckArray = new CardDeck[numberOfPlayers];
        
@@ -48,13 +88,9 @@ public class CardGame
        // distribute cards to decks and people
        cardDistribute(playerArray, cardArray, deckArray);
        
-       
        Dealer dealer = new Dealer();
        
-       
-       // runPlayerThreads(playerArray);
        int counter = 0;
-       // flag for win
        
        while(win.get() == false){
            if (counter % 2 == 0){
@@ -64,36 +100,12 @@ public class CardGame
            dealer.gameStateIterate(numberOfPlayers);
            counter++;
        }
-       
-            
-       //no requirement, can keep running
-       //
-       // GAME SETUP
-       // get file. tick  
-       // make array of decks (empty). tick
-       // make array of people. tick
-       // make threads  tick
-       // distribute cards round robin into people's hands (4 cards each). tick
-       // distribute cards to decks round robin, until card array empty (4 cards each). tick
-       // add a check to see if file has less than 8n cards. tick 
-       
-       // BEGIN GAME
-       // open n threads, one for each player.
-       // ----while !player won-----
-       // check if player has won. Change win flag.
-       // run player strategy on player hand, determine which to discard. (randomly non preferantial card) Wait to be synchronised.
-       // all players discard card to deck on their right (player n+1).
-       // all players select card from deck to their left (player n-1).
-       // print moves to file (playerX_output.txt)
-       // ----loop----
-       
-       
+      
        // terminate all threads
        System.out.println("Winner is : " + playerWinner);
        
       
     }
-    
     
     public static String fileReader(String nameOfFile, int numberOfPlayers) //load just 8n cards, no more, also check for non negative int
     {
@@ -187,7 +199,7 @@ public class CardGame
             }
         }
         
-
+        
         for(int c = 0; c < 4; c++){    
             for(int i = 0; i < playerArray.length; i++){
                 CardDeck cardDeck = deckArray[i];
@@ -200,6 +212,11 @@ public class CardGame
         
         System.out.println("Total cards added : " + cardCounter);
     }
+   
+    
+    //public static CardDeck[] getDeckArray(){
+    //    return deckArray;
+    //}
 
     public static void setWin(boolean winBool, int playerPosition){
         win.set(winBool);

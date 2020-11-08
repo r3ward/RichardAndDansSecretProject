@@ -1,0 +1,702 @@
+Player 1 draws a 9 from deck 1
+Player 1 current hand: [6, 8, 4, 9]
+Player 1 discards a 9 to deck 0
+Player 1 current hand: [6, 8, 4]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [6, 8, 4, 6]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [8, 4, 6]
+Player 1 draws a 5 from deck 1
+Player 1 current hand: [8, 4, 6, 5]
+Player 1 discards a 5 to deck 0
+Player 1 current hand: [8, 4, 6]
+Player 1 draws a 3 from deck 1
+Player 1 current hand: [8, 4, 6, 3]
+Player 1 discards a 3 to deck 0
+Player 1 current hand: [8, 4, 6]
+Player 1 draws a 5 from deck 1
+Player 1 current hand: [8, 4, 6, 5]
+Player 1 discards a 8 to deck 0
+Player 1 current hand: [4, 6, 5]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [4, 6, 5, 6]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [4, 5, 6]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [4, 5, 6, 4]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [4, 5, 4]
+Player 1 draws a 7 from deck 1
+Player 1 current hand: [4, 5, 4, 7]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [5, 4, 7]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [5, 4, 7, 4]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [5, 7, 4]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [5, 7, 4, 4]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [5, 7, 4]
+Player 1 draws a 9 from deck 1
+Player 1 current hand: [5, 7, 4, 9]
+Player 1 discards a 5 to deck 0
+Player 1 current hand: [7, 4, 9]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [7, 4, 9, 6]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [7, 9, 6]
+Player 1 draws a 9 from deck 1
+Player 1 current hand: [7, 9, 6, 9]
+Player 1 discards a 7 to deck 0
+Player 1 current hand: [9, 6, 9]
+Player 1 draws a 3 from deck 1
+Player 1 current hand: [9, 6, 9, 3]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [9, 9, 3]
+Player 1 draws a 8 from deck 1
+Player 1 current hand: [9, 9, 3, 8]
+Player 1 discards a 8 to deck 0
+Player 1 current hand: [9, 9, 3]
+Player 1 draws a 5 from deck 1
+Player 1 current hand: [9, 9, 3, 5]
+Player 1 discards a 5 to deck 0
+Player 1 current hand: [9, 9, 3]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [9, 9, 3, 6]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [9, 9, 3]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [9, 9, 3, 4]
+Player 1 discards a 9 to deck 0
+Player 1 current hand: [9, 3, 4]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [9, 3, 4, 4]
+Player 1 discards a 9 to deck 0
+Player 1 current hand: [3, 4, 4]
+Player 1 draws a 8 from deck 1
+Player 1 current hand: [3, 4, 4, 8]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [3, 4, 8]
+Player 1 draws a 5 from deck 1
+Player 1 current hand: [3, 4, 8, 5]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [3, 8, 5]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [3, 8, 5, 6]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [3, 8, 5]
+Player 1 draws a 7 from deck 1
+Player 1 current hand: [3, 8, 5, 7]
+Player 1 discards a 3 to deck 0
+Player 1 current hand: [8, 5, 7]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [8, 5, 7, 4]
+Player 1 discards a 8 to deck 0
+Player 1 current hand: [5, 7, 4]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [5, 7, 4, 6]
+Player 1 discards a 5 to deck 0
+Player 1 current hand: [7, 4, 6]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [7, 4, 6, 4]
+Player 1 discards a 7 to deck 0
+Player 1 current hand: [4, 6, 4]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [4, 6, 4, 6]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [4, 6, 6]
+Player 1 draws a 5 from deck 1
+Player 1 current hand: [4, 6, 6, 5]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [4, 6, 5]
+Player 1 draws a 9 from deck 1
+Player 1 current hand: [4, 6, 5, 9]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [4, 5, 9]
+Player 1 draws a 9 from deck 1
+Player 1 current hand: [4, 5, 9, 9]
+Player 1 discards a 5 to deck 0
+Player 1 current hand: [4, 9, 9]
+Player 1 draws a 8 from deck 1
+Player 1 current hand: [4, 9, 9, 8]
+Player 1 discards a 9 to deck 0
+Player 1 current hand: [4, 9, 8]
+Player 1 current hand: [4, 9, 8, 4]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [9, 8, 4]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [9, 8, 4, 4]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [9, 8, 4]
+Player 1 draws a 3 from deck 1
+Player 1 current hand: [9, 8, 4, 3]
+Player 1 discards a 3 to deck 0
+Player 1 current hand: [9, 8, 4]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [9, 8, 4, 6]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [9, 8, 4]
+Player 1 draws a 7 from deck 1
+Player 1 current hand: [9, 8, 4, 7]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [9, 8, 7]
+Player 1 draws a 8 from deck 1
+Player 1 current hand: [9, 8, 7, 8]
+Player 1 discards a 9 to deck 0
+Player 1 current hand: [8, 7, 8]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [8, 7, 8, 4]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [8, 7, 8]
+Player 1 draws a 5 from deck 1
+Player 1 current hand: [8, 7, 8, 5]
+Player 1 discards a 5 to deck 0
+Player 1 current hand: [8, 7, 8]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [8, 7, 8, 6]
+Player 1 discards a 8 to deck 0
+Player 1 current hand: [8, 7, 6]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [8, 7, 6, 6]
+Player 1 discards a 8 to deck 0
+Player 1 current hand: [7, 6, 6]
+Player 1 draws a 9 from deck 1
+Player 1 current hand: [7, 6, 6, 9]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [7, 6, 9]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [7, 6, 9, 4]
+Player 1 discards a 9 to deck 0
+Player 1 current hand: [7, 6, 4]
+Player 1 draws a 5 from deck 1
+Player 1 current hand: [7, 6, 4, 5]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [7, 4, 5]
+Player 1 draws a 3 from deck 1
+Player 1 current hand: [7, 4, 5, 3]
+Player 1 discards a 3 to deck 0
+Player 1 current hand: [7, 4, 5]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [7, 4, 5, 4]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [7, 5, 4]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [7, 5, 4, 6]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [7, 5, 6]
+Player 1 draws a 9 from deck 1
+Player 1 current hand: [7, 5, 6, 9]
+Player 1 discards a 7 to deck 0
+Player 1 current hand: [5, 6, 9]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [5, 6, 9, 4]
+Player 1 discards a 9 to deck 0
+Player 1 current hand: [5, 6, 4]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [5, 6, 4, 4]
+Player 1 discards a 5 to deck 0
+Player 1 current hand: [6, 4, 4]
+Player 1 draws a 5 from deck 1
+Player 1 current hand: [6, 4, 4, 5]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [6, 4, 5]
+Player 1 draws a 8 from deck 1
+Player 1 current hand: [6, 4, 5, 8]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [6, 5, 8]
+Player 1 draws a 8 from deck 1
+Player 1 current hand: [6, 5, 8, 8]
+Player 1 discards a 8 to deck 0
+Player 1 current hand: [6, 5, 8]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [6, 5, 8, 6]
+Player 1 discards a 8 to deck 0
+Player 1 current hand: [6, 5, 6]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [6, 5, 6, 6]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [5, 6, 6]
+Player 1 draws a 9 from deck 1
+Player 1 current hand: [5, 6, 6, 9]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [5, 6, 9]
+Player 1 draws a 3 from deck 1
+Player 1 current hand: [5, 6, 9, 3]
+Player 1 discards a 9 to deck 0
+Player 1 current hand: [5, 6, 3]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [5, 6, 3, 4]
+Player 1 discards a 3 to deck 0
+Player 1 current hand: [5, 6, 4]
+Player 1 draws a 9 from deck 1
+Player 1 current hand: [5, 6, 4, 9]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [5, 4, 9]
+Player 1 draws a 5 from deck 1
+Player 1 current hand: [5, 4, 9, 5]
+Player 1 discards a 9 to deck 0
+Player 1 current hand: [5, 4, 5]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [5, 4, 5, 4]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [5, 4, 5]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [5, 4, 5, 4]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [5, 4, 5]
+Player 1 draws a 4 from deck 1
+Player 1 discards a 5 to deck 0
+Player 1 current hand: [5, 4, 4]
+Player 1 draws a 8 from deck 1
+Player 1 current hand: [5, 4, 4, 8]
+Player 1 discards a 5 to deck 0
+Player 1 current hand: [4, 4, 8]
+Player 1 draws a 7 from deck 1
+Player 1 current hand: [4, 4, 8, 7]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [4, 8, 7]
+Player 1 draws a 8 from deck 1
+Player 1 current hand: [4, 8, 7, 8]
+Player 1 discards a 7 to deck 0
+Player 1 current hand: [4, 8, 8]
+Player 1 draws a 9 from deck 1
+Player 1 current hand: [4, 8, 8, 9]
+Player 1 discards a 9 to deck 0
+Player 1 current hand: [4, 8, 8]
+Player 1 draws a 3 from deck 1
+Player 1 current hand: [4, 8, 8, 3]
+Player 1 discards a 8 to deck 0
+Player 1 current hand: [4, 8, 3]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [4, 8, 3, 6]
+Player 1 discards a 8 to deck 0
+Player 1 current hand: [4, 3, 6]
+Player 1 draws a 9 from deck 1
+Player 1 current hand: [4, 3, 6, 9]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [4, 3, 9]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [4, 3, 9, 6]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [3, 9, 6]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [3, 9, 6, 6]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [3, 9, 6]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [3, 9, 6, 4]
+Player 1 discards a 9 to deck 0
+Player 1 current hand: [3, 6, 4]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [3, 6, 4, 4]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [3, 6, 4]
+Player 1 draws a 5 from deck 1
+Player 1 current hand: [3, 6, 4, 5]
+Player 1 discards a 3 to deck 0
+Player 1 current hand: [6, 4, 5]
+Player 1 draws a 5 from deck 1
+Player 1 current hand: [6, 4, 5, 5]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [4, 5, 5]
+Player 1 draws a 7 from deck 1
+Player 1 current hand: [4, 5, 5, 7]
+Player 1 discards a 7 to deck 0
+Player 1 current hand: [4, 5, 5]
+Player 1 draws a 9 from deck 1
+Player 1 current hand: [4, 5, 5, 9]
+Player 1 discards a 9 to deck 0
+Player 1 current hand: [4, 5, 5]
+Player 1 draws a 8 from deck 1
+Player 1 current hand: [4, 5, 5, 8]
+Player 1 discards a 8 to deck 0
+Player 1 current hand: [4, 5, 5]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [4, 5, 5, 6]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [4, 5, 5]
+Player 1 draws a 8 from deck 1
+Player 1 current hand: [4, 5, 5, 8]
+Player 1 discards a 5 to deck 0
+Player 1 current hand: [4, 5, 8]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [4, 5, 8, 6]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [4, 5, 8]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [4, 5, 8, 4]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [4, 5, 8]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [4, 5, 8, 4]
+Player 1 discards a 5 to deck 0
+Player 1 current hand: [4, 8, 4]
+Player 1 draws a 9 from deck 1
+Player 1 current hand: [4, 8, 4, 9]
+Player 1 discards a 8 to deck 0
+Player 1 current hand: [4, 4, 9]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [4, 4, 9, 6]
+Player 1 discards a 9 to deck 0
+Player 1 current hand: [4, 4, 6]
+Player 1 draws a 7 from deck 1
+Player 1 current hand: [4, 4, 6, 7]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [4, 6, 7]
+Player 1 draws a 3 from deck 1
+Player 1 current hand: [4, 6, 7, 3]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [6, 7, 3]
+Player 1 draws a 8 from deck 1
+Player 1 current hand: [6, 7, 3, 8]
+Player 1 discards a 8 to deck 0
+Player 1 current hand: [6, 7, 3]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [6, 7, 3, 4]
+Player 1 discards a 7 to deck 0
+Player 1 current hand: [6, 3, 4]
+Player 1 draws a 9 from deck 1
+Player 1 current hand: [6, 3, 4, 9]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [6, 3, 9]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [6, 3, 9, 6]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [6, 3, 9]
+Player 1 draws a 5 from deck 1
+Player 1 current hand: [6, 3, 9, 5]
+Player 1 discards a 5 to deck 0
+Player 1 current hand: [6, 3, 9]
+Player 1 draws a 5 from deck 1
+Player 1 current hand: [6, 3, 9, 5]
+Player 1 current hand: [6, 3, 5]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [6, 3, 5, 4]
+Player 1 discards a 3 to deck 0
+Player 1 current hand: [6, 5, 4]
+Player 1 draws a 8 from deck 1
+Player 1 current hand: [6, 5, 4, 8]
+Player 1 discards a 8 to deck 0
+Player 1 current hand: [6, 5, 4]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [6, 5, 4, 4]
+Player 1 discards a 5 to deck 0
+Player 1 current hand: [6, 4, 4]
+Player 1 draws a 9 from deck 1
+Player 1 current hand: [6, 4, 4, 9]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [6, 4, 9]
+Player 1 draws a 8 from deck 1
+Player 1 current hand: [6, 4, 9, 8]
+Player 1 discards a 9 to deck 0
+Player 1 current hand: [6, 4, 8]
+Player 1 draws a 7 from deck 1
+Player 1 current hand: [6, 4, 8, 7]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [4, 8, 7]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [4, 8, 7, 4]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [8, 7, 4]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [8, 7, 4, 6]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [8, 7, 6]
+Player 1 draws a 5 from deck 1
+Player 1 current hand: [8, 7, 6, 5]
+Player 1 discards a 7 to deck 0
+Player 1 current hand: [8, 6, 5]
+Player 1 draws a 9 from deck 1
+Player 1 current hand: [8, 6, 5, 9]
+Player 1 discards a 5 to deck 0
+Player 1 current hand: [8, 6, 9]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [8, 6, 9, 6]
+Player 1 discards a 8 to deck 0
+Player 1 current hand: [6, 9, 6]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [6, 9, 6, 4]
+Player 1 discards a 9 to deck 0
+Player 1 current hand: [6, 6, 4]
+Player 1 draws a 3 from deck 1
+Player 1 current hand: [6, 6, 4, 3]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [6, 4, 3]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [6, 4, 3, 4]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [4, 3, 4]
+Player 1 draws a 5 from deck 1
+Player 1 current hand: [4, 3, 4, 5]
+Player 1 discards a 3 to deck 0
+Player 1 current hand: [4, 4, 5]
+Player 1 draws a 8 from deck 1
+Player 1 current hand: [4, 4, 5, 8]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [4, 5, 8]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [4, 5, 8, 6]
+Player 1 discards a 5 to deck 0
+Player 1 current hand: [4, 8, 6]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [4, 8, 6, 4]
+Player 1 discards a 8 to deck 0
+Player 1 current hand: [4, 6, 4]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [4, 6, 4, 4]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [4, 6, 4]
+Player 1 draws a 9 from deck 1
+Player 1 current hand: [4, 6, 4, 9]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [4, 6, 9]
+Player 1 draws a 8 from deck 1
+Player 1 current hand: [4, 6, 9, 8]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [6, 9, 8]
+Player 1 draws a 5 from deck 1
+Player 1 current hand: [6, 9, 8, 5]
+Player 1 discards a 8 to deck 0
+Player 1 current hand: [6, 9, 5]
+Player 1 draws a 7 from deck 1
+Player 1 current hand: [6, 9, 5, 7]
+Player 1 discards a 9 to deck 0
+Player 1 current hand: [6, 5, 7]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [6, 5, 7, 6]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [6, 5, 7]
+Player 1 draws a 3 from deck 1
+Player 1 current hand: [6, 5, 7, 3]
+Player 1 discards a 7 to deck 0
+Player 1 current hand: [6, 5, 3]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [6, 5, 3, 6]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [5, 3, 6]
+Player 1 draws a 9 from deck 1
+Player 1 current hand: [5, 3, 6, 9]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [5, 3, 9]
+Player 1 draws a 5 from deck 1
+Player 1 current hand: [5, 3, 9, 5]
+Player 1 discards a 3 to deck 0
+Player 1 current hand: [5, 9, 5]
+Player 1 draws a 8 from deck 1
+Player 1 current hand: [5, 9, 5, 8]
+Player 1 discards a 5 to deck 0
+Player 1 current hand: [5, 9, 8]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [5, 9, 8, 4]
+Player 1 discards a 8 to deck 0
+Player 1 current hand: [5, 9, 4]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [5, 9, 4, 4]
+Player 1 discards a 4 to deck 0
+Player 1 draws a 8 from deck 1
+Player 1 current hand: [5, 9, 4, 8]
+Player 1 discards a 9 to deck 0
+Player 1 current hand: [5, 4, 8]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [5, 4, 8, 4]
+Player 1 discards a 5 to deck 0
+Player 1 current hand: [4, 8, 4]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [4, 8, 4, 4]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [4, 8, 4]
+Player 1 draws a 9 from deck 1
+Player 1 current hand: [4, 8, 4, 9]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [4, 8, 9]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [4, 8, 9, 6]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [4, 8, 9]
+Player 1 draws a 7 from deck 1
+Player 1 current hand: [4, 8, 9, 7]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [8, 9, 7]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [8, 9, 7, 6]
+Player 1 discards a 8 to deck 0
+Player 1 current hand: [9, 7, 6]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [9, 7, 6, 6]
+Player 1 discards a 7 to deck 0
+Player 1 current hand: [9, 6, 6]
+Player 1 draws a 8 from deck 1
+Player 1 current hand: [9, 6, 6, 8]
+Player 1 discards a 8 to deck 0
+Player 1 current hand: [9, 6, 6]
+Player 1 draws a 5 from deck 1
+Player 1 current hand: [9, 6, 6, 5]
+Player 1 discards a 9 to deck 0
+Player 1 current hand: [6, 6, 5]
+Player 1 draws a 3 from deck 1
+Player 1 current hand: [6, 6, 5, 3]
+Player 1 discards a 3 to deck 0
+Player 1 current hand: [6, 6, 5]
+Player 1 draws a 5 from deck 1
+Player 1 current hand: [6, 6, 5, 5]
+Player 1 discards a 5 to deck 0
+Player 1 current hand: [6, 6, 5]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [6, 6, 5, 4]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [6, 5, 4]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [6, 5, 4, 4]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [6, 5, 4]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [6, 5, 4, 4]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [6, 5, 4]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [6, 5, 4, 4]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [5, 4, 4]
+Player 1 draws a 9 from deck 1
+Player 1 current hand: [5, 4, 4, 9]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [5, 4, 9]
+Player 1 draws a 7 from deck 1
+Player 1 current hand: [5, 4, 9, 7]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [5, 9, 7]
+Player 1 draws a 8 from deck 1
+Player 1 current hand: [5, 9, 7, 8]
+Player 1 discards a 7 to deck 0
+Player 1 current hand: [5, 9, 8]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [5, 9, 8, 6]
+Player 1 discards a 5 to deck 0
+Player 1 current hand: [9, 8, 6]
+Player 1 draws a 9 from deck 1
+Player 1 current hand: [9, 8, 6, 9]
+Player 1 discards a 9 to deck 0
+Player 1 current hand: [8, 6, 9]
+Player 1 draws a 3 from deck 1
+Player 1 current hand: [8, 6, 9, 3]
+Player 1 discards a 8 to deck 0
+Player 1 current hand: [6, 9, 3]
+Player 1 draws a 8 from deck 1
+Player 1 current hand: [6, 9, 3, 8]
+Player 1 discards a 3 to deck 0
+Player 1 current hand: [6, 9, 8]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [6, 9, 8, 4]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [6, 9, 8]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [6, 9, 8, 4]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [9, 8, 4]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [9, 8, 4, 6]
+Player 1 discards a 9 to deck 0
+Player 1 current hand: [8, 4, 6]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [8, 4, 6, 6]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [8, 6, 6]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [8, 6, 6, 4]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [8, 6, 4]
+Player 1 draws a 7 from deck 1
+Player 1 current hand: [8, 6, 4, 7]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [8, 4, 7]
+Player 1 draws a 5 from deck 1
+Player 1 current hand: [8, 4, 7, 5]
+Player 1 discards a 8 to deck 0
+Player 1 current hand: [4, 7, 5]
+Player 1 draws a 9 from deck 1
+Player 1 current hand: [4, 7, 5, 9]
+Player 1 discards a 5 to deck 0
+Player 1 current hand: [4, 7, 9]
+Player 1 discards a 9 to deck 0
+Player 1 current hand: [4, 7, 8]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [4, 7, 8, 4]
+Player 1 discards a 8 to deck 0
+Player 1 current hand: [4, 7, 4]
+Player 1 draws a 5 from deck 1
+Player 1 current hand: [4, 7, 4, 5]
+Player 1 discards a 7 to deck 0
+Player 1 current hand: [4, 4, 5]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [4, 4, 5, 6]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [4, 4, 5]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [4, 4, 5, 4]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [4, 4, 5]
+Player 1 draws a 9 from deck 1
+Player 1 current hand: [4, 4, 5, 9]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [4, 5, 9]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [4, 5, 9, 6]
+Player 1 discards a 9 to deck 0
+Player 1 current hand: [4, 5, 6]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [4, 5, 6, 4]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [5, 6, 4]
+Player 1 draws a 8 from deck 1
+Player 1 current hand: [5, 6, 4, 8]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [5, 4, 8]
+Player 1 draws a 5 from deck 1
+Player 1 current hand: [5, 4, 8, 5]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [5, 8, 5]
+Player 1 draws a 9 from deck 1
+Player 1 current hand: [5, 8, 5, 9]
+Player 1 discards a 5 to deck 0
+Player 1 current hand: [8, 5, 9]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [8, 5, 9, 6]
+Player 1 discards a 8 to deck 0
+Player 1 current hand: [5, 9, 6]
+Player 1 draws a 7 from deck 1
+Player 1 current hand: [5, 9, 6, 7]
+Player 1 discards a 5 to deck 0
+Player 1 current hand: [9, 6, 7]
+Player 1 draws a 3 from deck 1
+Player 1 current hand: [9, 6, 7, 3]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [9, 7, 3]
+Player 1 draws a 8 from deck 1
+Player 1 current hand: [9, 7, 3, 8]
+Player 1 discards a 7 to deck 0
+Player 1 current hand: [9, 3, 8]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [9, 3, 8, 4]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [9, 3, 8]
+Player 1 draws a 4 from deck 1
+Player 1 current hand: [9, 3, 8, 4]
+Player 1 discards a 4 to deck 0
+Player 1 current hand: [9, 3, 8]
+Player 1 draws a 9 from deck 1
+Player 1 current hand: [9, 3, 8, 9]
+Player 1 discards a 9 to deck 0
+Player 1 current hand: [3, 8, 9]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [3, 8, 9, 6]
+Player 1 discards a 8 to deck 0
+Player 1 current hand: [3, 9, 6]
+Player 1 draws a 6 from deck 1
+Player 1 current hand: [3, 9, 6, 6]
+Player 1 discards a 6 to deck 0
+Player 1 current hand: [3, 9, 6]
+Player 1 draws a 5 from deck 1
+Player 1 current hand: [3, 9, 6, 5]
+Player 1 discards a 5 to deck 0
+Player 1 current hand: [3, 9, 6]
