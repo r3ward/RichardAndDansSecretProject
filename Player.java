@@ -26,7 +26,8 @@ public class Player
     public int playerPosition;
     public int totalPlayers;
     public boolean win;
-    private enum Task { PICKUP, DISCARD };
+    private enum Task { PICKUP, DISCARD }
+
     private Task task;
     public Processor playerProcessor;
     
@@ -43,25 +44,11 @@ public class Player
         createFile();
     }
 
-    // methods
-    // add commenting (like below) to all methods
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-        
+
     public void makeProcessor(CountDownLatch latch){
         playerProcessor = new Processor(latch);
     }
-    
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
+
         
     public Processor getProcessor(){
         return playerProcessor;
