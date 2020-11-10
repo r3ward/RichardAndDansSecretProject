@@ -1,0 +1,27 @@
+#BlueJ class context
+comment0.target=CardDeck
+comment0.text=\n\ Write\ a\ description\ of\ class\ CardDeck\ here.\n\n\ @author\ (your\ name)\n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=position
+comment1.target=CardDeck(int)
+comment1.text=\n\ Constructor\ for\ objects\ of\ class\ CardDeck\n
+comment10.params=
+comment10.target=void\ createFile()
+comment11.params=message
+comment11.target=void\ writeToFile(java.lang.String)
+comment2.params=
+comment2.target=int\ getDeckPosition()
+comment3.params=card
+comment3.target=void\ addTopCard(Card)
+comment4.params=
+comment4.target=java.util.ArrayList\ createCardDeck()
+comment5.params=
+comment5.target=Card\ getTopCard()
+comment6.params=card
+comment6.target=void\ addBottomCard(Card)
+comment7.params=
+comment7.target=java.util.ArrayList\ getCardArray()
+comment8.params=
+comment8.target=int[]\ getCardDeckValues()
+comment9.params=
+comment9.target=void\ deckTerminate()
+numComments=12
