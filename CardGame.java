@@ -10,8 +10,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /**
  * Write a description of class CardGame here.
  *
- * @author (your name)
- * @version (8/11/2020 - 18:00)
+ * @author (your name) RICHARD WAS ERE
+ * @version (8 / 11 / 2020 - 18 : 00)
  */
 public class CardGame
 {
