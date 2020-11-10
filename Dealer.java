@@ -31,7 +31,6 @@ public class Dealer
         Player[] playerArray = CardGame.getPlayerArray();
         
         int counter = 0;
-        boolean check = CardGame.getAtomicBool();
         while(win.get() == false) {
             if (counter % 2 == 0){
                System.out.println("Round " + counter/2);
@@ -64,6 +63,7 @@ public class Dealer
                     player.writeWinToFile(playerPosition);
                 }
         }
+//        ADD terminate decks
         System.out.println("Player " + playerPosition + " wins.");
     }
 }

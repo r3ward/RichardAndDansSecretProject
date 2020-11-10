@@ -73,11 +73,12 @@ public class CardDeck
     //new method
     public void deckTerminate(){
         createFile();
-        String deckvalues = Arrays.toString(this.getCardDeckValues());
-        String fileText = "deck " + deckPosition + " contents: " + deckvalues;
+        String deckValues = Arrays.toString(this.getCardDeckValues());
+        String fileText = "deck " + deckPosition + " contents: " + deckValues;
+        writeToFile(fileText);
     }
     
-        public void createFile(){
+    public void createFile(){
         try {
           File myObj = new File("deck" + deckPosition  + ".txt");
           if (myObj.createNewFile()) {

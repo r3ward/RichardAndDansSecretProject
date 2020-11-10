@@ -49,7 +49,6 @@ public class Player
         playerProcessor = new Processor(latch);
     }
 
-        
     public Processor getProcessor(){
         return playerProcessor;
     }

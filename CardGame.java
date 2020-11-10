@@ -18,7 +18,6 @@ public class CardGame
     
     public static CardDeck[] deckArray;
     public static Player[] playerArray;
-    public static AtomicBoolean win;
     public static int numberOfPlayers;
 
     /**
@@ -43,9 +42,6 @@ public class CardGame
            }
        }
 
-       //String nameOfFile = myObj.nextLine();
-       win = new AtomicBoolean(false);
-       
        String fileName;
        while(true){
            Scanner myObj = new Scanner(System.in);
@@ -72,9 +68,9 @@ public class CardGame
        deckArray = new CardDeck[numberOfPlayers];
        
        // make decks
-       generateDecks(deckArray);
+       deckArray = generateDecks(deckArray);
        // make people
-       generatePeople(playerArray, numberOfPlayers);
+       playerArray = generatePeople(playerArray, numberOfPlayers);
        // distribute cards to decks and people
        cardDistribute(playerArray, cardArray, deckArray);
        
@@ -129,7 +125,7 @@ public class CardGame
         return cardArray;
     }
     
-    public static void generatePeople(Player[] playerArray, int numberOfPlayers)
+    public static Player[] generatePeople(Player[] playerArray, int numberOfPlayers)
     {
         int id = 0;
         while(id < playerArray.length){
@@ -137,9 +133,10 @@ public class CardGame
             playerArray[id] = tempPlayer;
             id++;
         }
+        return playerArray;
     }
     
-    public static void generateDecks(CardDeck[] deckArray)
+    public static CardDeck[] generateDecks(CardDeck[] deckArray)
     {
         // initialise instance variables
         int id = 0;
@@ -147,7 +144,8 @@ public class CardGame
             CardDeck tempDeck = new CardDeck(id); //input id
             deckArray[id] = tempDeck;
             id++;
-        } 
+        }
+        return deckArray;
     }
     
     public static CardDeck[] getDeckArray(){
@@ -156,10 +154,6 @@ public class CardGame
     
     public static Player[] getPlayerArray(){
         return playerArray;
-    }
-    
-    public static boolean getAtomicBool(){
-        return win.get();
     }
     
     public static void cardDistribute(Player[] playerArray, String[] cardArray, CardDeck[] deckArray)
