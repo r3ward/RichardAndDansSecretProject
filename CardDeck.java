@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.io.FileWriter;   // Import the FileWriter class
+import java.io.IOException;  // Import the IOException class to handle errors
+import java.io.File;  
 /**
  * Write a description of class CardDeck here.
  *
@@ -36,7 +39,6 @@ public class CardDeck
         ArrayList<Card> cardArray = new ArrayList<Card>();
         return cardArray;
     }
-
   
     public synchronized Card getTopCard(){
         // get top card in array
@@ -46,7 +48,7 @@ public class CardDeck
             cardArray.remove(0);
             return topCard;
         }
-        // fix this later
+        // fix this later <<<<<<<<<<<<<<<<<<<<<<<<
         return null;
     }
     
@@ -67,4 +69,37 @@ public class CardDeck
         }
         return playerDeckValues;
     }
+    
+    //new method
+    public void deckTerminate(){
+        createFile();
+        String deckvalues = Arrays.toString(this.getCardDeckValues());
+        String fileText = "deck " + deckPosition + " contents: " + deckvalues;
+    }
+    
+        public void createFile(){
+        try {
+          File myObj = new File("deck" + deckPosition  + ".txt");
+          if (myObj.createNewFile()) {
+            System.out.println("File created: " + myObj.getName());
+          } else {
+            System.out.println("File already exists.");
+          }
+        } catch (IOException e) {
+          System.out.println("An error occurred.");
+          e.printStackTrace();
+        }
+    }
+    
+    public void writeToFile(String message){
+        try {
+          FileWriter myWriter = new FileWriter("deck" + deckPosition  + ".txt", true);
+          myWriter.write(message);
+          myWriter.write("\n");
+          myWriter.close();
+        } catch (IOException e) {
+          System.out.println("An error occurred whilst printing.");
+          e.printStackTrace();
+        }
+    } 
 }

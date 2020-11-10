@@ -1,5 +1,3 @@
-//// last worked on : 21/10/2020
-// next time: line 53
 import java.util.Scanner;
 import java.util.Arrays;
 import java.util.InputMismatchException;
@@ -8,43 +6,33 @@ import java.io.IOException;  // Import the IOException class to handle errors
 import java.io.File;
 import java.io.*;
 import java.util.concurrent.atomic.AtomicBoolean;
-// Import the Scanner class
-// test
 
 /**
  * Write a description of class CardGame here.
  *
  * @author (your name)
- * @version (a version number or a date)
+ * @version (8/11/2020 - 18:00)
  */
 public class CardGame
 {
-    // instance variables - replace the example below with your own
-
-    // playerArray for order of players
-    // deckArray for order of decks
     
     public static CardDeck[] deckArray;
     public static Player[] playerArray;
     public static AtomicBoolean win;
     public static int playerWinner;
     public static int numberOfPlayers;
-    
-    //card game asks players
-    //card game inits players and puts them on the table
 
     /**
      * Constructor for objects of class CardGame
      */
     public static void main(String[] args){
-    
   
        while(true){
            Scanner myObj = new Scanner(System.in);
            System.out.println("Please enter number of players:");
            try{
                numberOfPlayers = myObj.nextInt();
-               if (numberOfPlayers < 0){
+               if (numberOfPlayers <= 0){
                    // maybe just continue loop and don't throw an exception
                    System.out.println("Please enter an Integer value greater than 0.");
                }
@@ -55,10 +43,10 @@ public class CardGame
                 System.out.println("Please enter an Integer value greater than 0.");
            }
        }
-       
-       //System.out.println("Please enter file name:");
+
        //String nameOfFile = myObj.nextLine();
        win = new AtomicBoolean(false);
+       
        String fileName;
        while(true){
            Scanner myObj = new Scanner(System.in);
@@ -77,8 +65,10 @@ public class CardGame
            }
        }
        
-       // CAtest.txt
-       String[] cardArray = cardArrayGenerator(CardGame.fileReader(fileName, numberOfPlayers)); //generates and stores card
+       
+       // -- CAtest.txt
+       String fileReaderTest = fileReader(fileName, numberOfPlayers);
+       String[] cardArray = cardArrayGenerator(fileReaderTest);
        playerArray = new Player[numberOfPlayers];
        deckArray = new CardDeck[numberOfPlayers];
        
@@ -93,17 +83,20 @@ public class CardGame
        
        int counter = 0;
        
-       while(win.get() == false){
-           if (counter % 2 == 0){
-               System.out.println("Round " + counter/2);
-            }
+       //win is atomicrstateFlag
+       
+       //while(CardGame.win.get() == false){
+           //if (counter % 2 == 0){
+               //System.out.println("Round " + counter/2);
+            //}
            // flag for which stage we are in
-           dealer.gameStateIterate(numberOfPlayers);
-           counter++;
-       }
-      
+       dealer.gameStateIterate(numberOfPlayers);
+           //counter++;
+       //}
+       
        // terminate all threads
        System.out.println("Winner is : " + playerWinner);
+       //write to each deck
        
       
     }
@@ -146,26 +139,21 @@ public class CardGame
     }
     
     public static String[] cardArrayGenerator(String sb){
-     
         String[] cardArray = sb.split("\n");
         return cardArray;
     }
     
-    public static void generatePeople(Player[] playerArray, int numberOfPlayers) //maybe generate both
+    public static void generatePeople(Player[] playerArray, int numberOfPlayers)
     {
-        // initialise instance variables
         int id = 0;
-        System.out.println("Lenght of PA: " + playerArray.length);
-        System.out.println("Total Players: " + numberOfPlayers);
         while(id < playerArray.length){
             Player tempPlayer = new Player(id, numberOfPlayers);
             playerArray[id] = tempPlayer;
             id++;
         }
- 
     }
     
-    public static void generateDecks(CardDeck[] deckArray) //maybe generate both
+    public static void generateDecks(CardDeck[] deckArray)
     {
         // initialise instance variables
         int id = 0;
@@ -184,27 +172,32 @@ public class CardGame
         return playerArray;
     }
     
+    public static boolean getAtomicBool(){
+        return win.get();
+    }
+    
     public static void cardDistribute(Player[] playerArray, String[] cardArray, CardDeck[] deckArray)
     {
-        // get cards from card array
-        // distribute cards to all players, 4 cards to each hand, 4 cards to deck
+
         int cardCounter = 0;
         
         for(int c = 0; c < 4; c++){
             for(int i = 0; i < playerArray.length; i++){
                 Player player = playerArray[i];
                 int cardValue = Integer.parseInt(cardArray[cardCounter]);
+                System.out.println(cardValue);
                 final Card card = new Card(cardValue);
                 player.initialiseHand(card);
                 cardCounter++;
             }
         }
         
-        
+        //distribute cards for decks
         for(int c = 0; c < 4; c++){    
-            for(int i = 0; i < playerArray.length; i++){
+            for(int i = 0; i < deckArray.length; i++){
                 CardDeck cardDeck = deckArray[i];
                 int cardValue = Integer.parseInt(cardArray[cardCounter]);
+                System.out.println(cardValue);
                 final Card card = new Card(cardValue);
                 cardDeck.addTopCard(card);
                 cardCounter++;
@@ -213,11 +206,16 @@ public class CardGame
         
         System.out.println("Total cards added : " + cardCounter);
     }
-   
     
-    //public static CardDeck[] getDeckArray(){
-    //    return deckArray;
-    //}
+    //new method
+    public static void terminateDecks(){
+        for(int c = 0; c < 4; c++){    
+            for(int i = 0; i < deckArray.length; i++){
+                CardDeck cardDeck = deckArray[i];
+                cardDeck.deckTerminate();
+            }
+        }
+    }
 
     public static void setWin(boolean winBool, int playerPosition){
         win.set(winBool);

@@ -11,55 +11,56 @@ import java.util.concurrent.Executors;
  */
 public class Dealer
 {
-
-    //public static CyclicBarrier gate;
-    //Set<Thread> threadSet;
-    public AtomicBoolean stateFlag;
+    public static AtomicBoolean win;
     
     public Dealer()
     {
-        // initialise instance variables
-       stateFlag = new AtomicBoolean(false);
-        
+        win = new AtomicBoolean(false);
     }
     
+    /**
+     * gameStateIterate
+     * Takes number of players, hands each player a thread to run their tasks on; terminates when all Players are done with their tasks
+     * @author (Richard and Dan)
+     * @version (a version number or a date)
+     */
     public void gameStateIterate(int numberOfPlayers){
         
-        CountDownLatch latch = new CountDownLatch(numberOfPlayers); // coundown from 3 to 0
-
-        ExecutorService executor = Executors.newFixedThreadPool(numberOfPlayers); // 3 Threads in pool
-        
+        CountDownLatch latch = new CountDownLatch(numberOfPlayers); 
+        ExecutorService executor = Executors.newFixedThreadPool(numberOfPlayers); 
         Player[] playerArray = CardGame.getPlayerArray();
         
-        for(int i=0; i < playerArray.length; i++) {
-            Player player = playerArray[i];
-            player.makeProcessor(latch);
-            executor.submit(player.playerProcessor); // ref to latch. each time call new Processes latch will count down by 1
+        int counter = 0;
+        boolean check = CardGame.getAtomicBool();
+        while(win.get() == false) {
+            if (counter % 2 == 0){
+               System.out.println("Round " + counter/2);
+            }
+            counter++;
+            for(int i=0; i < playerArray.length; i++) {
+                Player player = playerArray[i];
+                player.makeProcessor(latch);
+                executor.submit(player.playerProcessor); // ref to latch. each time call new Processes latch will countdown by 1
+            }
+            
+            //check = CardGame.getAtomicBool();
+            System.out.println("valueeee" + win.get());
+            try {
+                latch.await();
+                System.out.println("DONE WITH BLOCK");
+                latch = new CountDownLatch(numberOfPlayers); 
+                // wait until latch counted down to 
+            } catch (InterruptedException e) {
+                //executor.shutdown(); // just added
+            }
+            
         }
-
-        try {
-            latch.await();  // wait until latch counted down to 0
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("Completed.");
-        
-    }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     *
-     *   public void gameStateIterate()
-     *   {
-     *       threadSet = Thread.getAllStackTraces().keySet();
-     *       final CyclicBarrier gate = new CyclicBarrier(threadSet.size()+1);
-     *       
-     *   }
-     */
     
-    // https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CountDownLatch.html used for inspo
+    }
+    
+    public static void setWin(boolean winBool, int playerPosition){
+        win.set(winBool);
+    }
 }
+    
+
