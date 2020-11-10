@@ -43,11 +43,8 @@ public class Dealer
                 executor.submit(player.playerProcessor); // ref to latch. each time call new Processes latch will countdown by 1
             }
             
-            //check = CardGame.getAtomicBool();
-            System.out.println("valueeee" + win.get());
             try {
                 latch.await();
-                System.out.println("DONE WITH BLOCK");
                 latch = new CountDownLatch(numberOfPlayers); 
                 // wait until latch counted down to 
             } catch (InterruptedException e) {
@@ -59,7 +56,15 @@ public class Dealer
     }
     
     public static void setWin(boolean winBool, int playerPosition){
+        Player[] playerArray = CardGame.getPlayerArray();
         win.set(winBool);
+        for(int i=0; i < playerArray.length; i++) {
+                Player player = playerArray[i];
+                if (playerPosition != player.getPlayerPosition()){
+                    player.writeWinToFile(playerPosition);
+                }
+        }
+        System.out.println("Player " + playerPosition + " wins.");
     }
 }
     

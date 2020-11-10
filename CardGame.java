@@ -19,7 +19,6 @@ public class CardGame
     public static CardDeck[] deckArray;
     public static Player[] playerArray;
     public static AtomicBoolean win;
-    public static int playerWinner;
     public static int numberOfPlayers;
 
     /**
@@ -83,22 +82,9 @@ public class CardGame
        
        int counter = 0;
        
-       //win is atomicrstateFlag
-       
-       //while(CardGame.win.get() == false){
-           //if (counter % 2 == 0){
-               //System.out.println("Round " + counter/2);
-            //}
-           // flag for which stage we are in
+       // flag for which stage we are in
        dealer.gameStateIterate(numberOfPlayers);
-           //counter++;
-       //}
-       
-       // terminate all threads
-       System.out.println("Winner is : " + playerWinner);
-       //write to each deck
-       
-      
+ 
     }
     
     public static String fileReader(String nameOfFile, int numberOfPlayers) //load just 8n cards, no more, also check for non negative int
@@ -215,10 +201,5 @@ public class CardGame
                 cardDeck.deckTerminate();
             }
         }
-    }
-
-    public static void setWin(boolean winBool, int playerPosition){
-        win.set(winBool);
-        playerWinner = playerPosition;
     }
 }

@@ -67,11 +67,11 @@ public class Player
         return playerProcessor;
     }
     
-    public int[] getPlayerHandValues(){
-        int[] playerHandValues = new int[playerHand.size()];
+    public String getPlayerHandValues(){
+        String playerHandValues = ""; 
         for(int i=0; i < playerHand.size(); i++) {
             int value = playerHand.get(i).getCardValue();
-            playerHandValues[i] = value;
+            playerHandValues = playerHandValues + " " + value;
         }
         return playerHandValues;
     }    
@@ -85,22 +85,24 @@ public class Player
         }
     
         public void run() {
+            boolean stop = false;
             switch(task){
                 case DISCARD:
-                    checkForWin();
+                    stop = checkForWin();
                     Card throwawayCard = playerDecision();
                     removeCard(throwawayCard, getTotalPlayers());
-                    task = Task.PICKUP;
-                    writeToFile("Player " + playerPosition  + " current hand: " + Arrays.toString(getPlayerHandValues()));
-                    System.out.println("Player " + playerPosition + " current hand: " + Arrays.toString(getPlayerHandValues()));
-                    
+                    if (!stop){
+                        task = Task.PICKUP;
+                    }
                     break;
                 case PICKUP:
                     addCard();
-                    checkForWin();
-                    task = Task.DISCARD;
-                    writeToFile("Player " + playerPosition + " current hand: " + Arrays.toString(getPlayerHandValues()));
-                    System.out.println("Player " + playerPosition + " current hand: " + Arrays.toString(getPlayerHandValues()));
+                    stop = checkForWin();
+                    if (!stop){
+                        task = Task.DISCARD;
+                    }
+                    writeToFile("Player " + playerPosition + " current hand: " + getPlayerHandValues());
+                    System.out.println("Player " + playerPosition + " current hand: " + getPlayerHandValues());
                     break;
             }
             
@@ -117,10 +119,6 @@ public class Player
         return this.totalPlayers;
     }
       
-    public void runThread(String methodName){
-        // multi use system to run methods within the thread
-        // playerThread(new MyRunnableObject(methodName)).start(); 
-    }
     
     public ArrayList<Card> createPlayerHand(){
         ArrayList<Card> playerHand = new ArrayList<Card>();
@@ -140,7 +138,6 @@ public class Player
         playerHand.add(newCard);
         writeToFile("Player " + playerPosition + " draws a " + newCard.getCardValue() + " from deck " + leftDeck.getDeckPosition());
         System.out.println("Player " + playerPosition + " draws a " + newCard.getCardValue() + " from deck " + leftDeck.getDeckPosition());
-        this.checkForWin();
     }    
     
     public void removeCard(Card card, int totalPlayers){        
@@ -157,7 +154,7 @@ public class Player
         writeToFile("Player " + playerPosition + " discards a " + card.getCardValue() + " to deck " + rightDeckIndex);
     }
     
-    public void checkForWin(){
+    public boolean checkForWin(){
         int tempCardValue = 0;
         boolean win = true;
         if (playerHand.size() == 4){
@@ -181,13 +178,16 @@ public class Player
         this.win = win;
         
         if (win){
-            writeToFile("Player " + playerPosition + " has wins.");
-            writeToFile("Player " + playerPosition + " final hand: " + Arrays.toString(getPlayerHandValues()));
-            System.out.println("Player " + playerPosition + " has won.");
+            writeToFile("Player " + playerPosition + " wins");
+            writeToFile("Player " + playerPosition + " exits.");
+            writeToFile("Player " + playerPosition + " final hand: " + getPlayerHandValues());
+            System.out.println("Player " + playerPosition + " wins");
             Dealer.setWin(win, playerPosition);
-            CardGame.setWin(win, playerPosition); //<<<<<<<<<<
+            return true;
         }
-
+        else{
+            return false;
+        }
     }
     
     public Card playerDecision(){
@@ -250,6 +250,14 @@ public class Player
 
     public int getPlayerPosition(){
         return playerPosition;
+    }
+    
+    public void writeWinToFile(int winningPlayerPosition){
+        writeToFile("Player " + winningPlayerPosition + " has informed player " + this.playerPosition + " that player "+ winningPlayerPosition + " has won.");
+        writeToFile("Player " + this.playerPosition + " exits.");
+        writeToFile("Player " + this.playerPosition + " hand: " + getPlayerHandValues());
+
+        System.out.println("Player " + winningPlayerPosition + " has informed player " + this.playerPosition + " that they have won.");
     }
 
 }
