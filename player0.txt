@@ -18760,3 +18760,33 @@ Player 0 hand:  4 9 9 8
 Player 0 wins
 Player 0 exits.
 Player 0 final hand:  1 1 1 1
+Player 0 wins
+Player 0 exits.
+Player 0 final hand:  0 0 0 0
+Player 0 wins
+Player 0 exits.
+Player 0 final hand:  0 0 0 0
+Player 0 wins
+Player 0 exits.
+Player 0 final hand:  0 0 0 0
+Player 0 wins
+Player 0 exits.
+Player 0 final hand:  0 0 0 0
+Player 0 wins
+Player 0 exits.
+Player 0 final hand:  0 0 0 0
+Player 0 discards a 0 to deck 0
+Player 0 wins
+Player 0 exits.
+Player 0 final hand:  0 0 0 0
+Player 0 wins
+Player 0 exits.
+Player 0 final hand:  0 0 0 0
+Player 0 discards a 0 to deck 0
+Player 0 wins
+Player 0 exits.
+Player 0 final hand:  0 0 0 0
+Player 0 wins
+Player 0 exits.
+Player 0 final hand:  0 0 0 0
+Player 0 discards a 0 to deck 0

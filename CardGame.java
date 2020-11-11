@@ -75,9 +75,7 @@ public class CardGame
        cardDistribute(playerArray, cardArray, deckArray);
        
        Dealer dealer = new Dealer();
-       
-       int counter = 0;
-       
+
        // flag for which stage we are in
        dealer.gameStateIterate(numberOfPlayers);
  

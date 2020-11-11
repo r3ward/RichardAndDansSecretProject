@@ -32,6 +32,7 @@ class PlayerTest {
 
     @Test
     void getProcessor() {
+
     }
 
     @Test
@@ -84,17 +85,40 @@ class PlayerTest {
         // create deck
         // put deck in array with card
         // call method on player
+
+        CardGame cardGame = new CardGame();
+        CardDeck[] deckArray = new CardDeck[1];
+        deckArray = cardGame.generateDecks(deckArray);
+
     }
 
     @Test
     void removeCard() {
-        // call method on hand with value
-        // do get method before and after and do an assertNotEquals
+        Player player = new Player(0, 1);
+        ArrayList<Card> playerHand = player.createPlayerHand();
+        Card card = new Card(0);
+        player.initialiseHand(card);
+        player.removeCard(card, 1);
+
+        Player playerCompare = new Player(0, 1);
+        ArrayList<Card> playerHandCompare = playerCompare.createPlayerHand();
+
+        Assert.assertArrayEquals(playerHand.toArray(), playerHandCompare.toArray());
     }
 
     @Test
     void checkForWin() {
-        // fill player hand with winning cards, run checkForWin
+        Player player = new Player(0, 1);
+        Dealer dealer = new Dealer();
+        ArrayList<Card> playerHand = player.createPlayerHand();
+        Card card = new Card(0);
+        // add 4 identical cards, winning hand
+        player.initialiseHand(card);
+        player.initialiseHand(card);
+        player.initialiseHand(card);
+        player.initialiseHand(card);
+        boolean win = player.checkForWin();
+        Assert.assertTrue(win);
     }
 
     @Test
