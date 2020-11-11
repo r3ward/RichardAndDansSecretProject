@@ -89,7 +89,7 @@ public class Player
                     if (!stop){
                         task = Task.DISCARD;
                     }
-                    writeToFile("Player " + playerPosition + " current hand: " + getPlayerHandValues());
+                    writeToFile("player" + playerPosition  + ".txt", "Player " + playerPosition + " current hand: " + getPlayerHandValues());
                     System.out.println("Player " + playerPosition + " current hand: " + getPlayerHandValues());
                     break;
             }
@@ -121,10 +121,11 @@ public class Player
   
     public void addCard(){
         CardDeck[] deckArray = CardGame.getDeckArray();
+        System.out.println(deckArray);
         CardDeck leftDeck = deckArray[playerPosition];
         Card newCard = leftDeck.getTopCard();
         playerHand.add(newCard);
-        writeToFile("Player " + playerPosition + " draws a " + newCard.getCardValue() + " from deck " + leftDeck.getDeckPosition());
+        writeToFile("player" + playerPosition  + ".txt", "Player " + playerPosition + " draws a " + newCard.getCardValue() + " from deck " + leftDeck.getDeckPosition());
         System.out.println("Player " + playerPosition + " draws a " + newCard.getCardValue() + " from deck " + leftDeck.getDeckPosition());
     }    
     
@@ -139,7 +140,7 @@ public class Player
         CardDeck[] deckArray = CardGame.getDeckArray();
         deckArray[rightDeckIndex].addBottomCard(card);
         System.out.println("Player " + playerPosition + " discards a " + card.getCardValue() + " to deck " + rightDeckIndex);
-        writeToFile("Player " + playerPosition + " discards a " + card.getCardValue() + " to deck " + rightDeckIndex);
+        writeToFile("player" + playerPosition  + ".txt", "Player " + playerPosition + " discards a " + card.getCardValue() + " to deck " + rightDeckIndex);
     }
     
     public boolean checkForWin(){
@@ -166,9 +167,9 @@ public class Player
         this.win = win;
         
         if (win){
-            writeToFile("Player " + playerPosition + " wins");
-            writeToFile("Player " + playerPosition + " exits.");
-            writeToFile("Player " + playerPosition + " final hand: " + getPlayerHandValues());
+            writeToFile("player" + playerPosition  + ".txt", "Player " + playerPosition + " wins");
+            writeToFile("player" + playerPosition  + ".txt", "Player " + playerPosition + " exits.");
+            writeToFile("player" + playerPosition  + ".txt", "Player " + playerPosition + " final hand: " + getPlayerHandValues());
             System.out.println("Player " + playerPosition + " wins");
             Dealer.setWin(win, playerPosition);
             return true;
@@ -208,9 +209,9 @@ public class Player
         }
     }
     
-    public void writeToFile(String message){
+    public void writeToFile(String fileName, String message){
         try {
-          FileWriter myWriter = new FileWriter("player" + playerPosition  + ".txt", true);
+          FileWriter myWriter = new FileWriter(fileName, true);
           myWriter.write(message);
           myWriter.write("\n");
           myWriter.close();
@@ -223,27 +224,15 @@ public class Player
     public ArrayList<Card> getPlayerHand(){
         return playerHand;
     }
-    
-    public CardDeck getPlayerDeck(){
-        return playerDeck;
-    }
-    
-    public void setPlayerPosition(int position){
-        final int playerPosition = position;
-    }
-    
-    public void setFavouriteCard(int favourite){ //may not need as favouriteCard may == playerPosition
-        favouriteCard = favourite;
-    }
 
     public int getPlayerPosition(){
         return playerPosition;
     }
     
     public void writeWinToFile(int winningPlayerPosition){
-        writeToFile("Player " + winningPlayerPosition + " has informed player " + this.playerPosition + " that player "+ winningPlayerPosition + " has won.");
-        writeToFile("Player " + this.playerPosition + " exits.");
-        writeToFile("Player " + this.playerPosition + " hand: " + getPlayerHandValues());
+        writeToFile("player" + playerPosition  + ".txt", "Player " + winningPlayerPosition + " has informed player " + this.playerPosition + " that player "+ winningPlayerPosition + " has won.");
+        writeToFile("player" + playerPosition  + ".txt", "Player " + this.playerPosition + " exits.");
+        writeToFile("player" + playerPosition  + ".txt", "Player " + this.playerPosition + " hand: " + getPlayerHandValues());
 
         System.out.println("Player " + winningPlayerPosition + " has informed player " + this.playerPosition + " that they have won.");
     }

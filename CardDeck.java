@@ -41,14 +41,12 @@ public class CardDeck
     }
   
     public synchronized Card getTopCard(){
-        // get top card in array
-        // check not empty
+
         if (cardArray.size() > 0){
             Card topCard = cardArray.get(0);
             cardArray.remove(0);
             return topCard;
         }
-        // fix this later <<<<<<<<<<<<<<<<<<<<<<<<
         return null;
     }
     
@@ -75,7 +73,7 @@ public class CardDeck
         createFile();
         String deckValues = Arrays.toString(this.getCardDeckValues());
         String fileText = "deck " + deckPosition + " contents: " + deckValues;
-        writeToFile(fileText);
+        writeToFile("deck" + deckPosition  + ".txt", fileText);
     }
     
     public void createFile(){
@@ -92,9 +90,9 @@ public class CardDeck
         }
     }
     
-    public void writeToFile(String message){
+    public void writeToFile(String fileName, String message){
         try {
-          FileWriter myWriter = new FileWriter("deck" + deckPosition  + ".txt", true);
+          FileWriter myWriter = new FileWriter(fileName, true);
           myWriter.write(message);
           myWriter.write("\n");
           myWriter.close();

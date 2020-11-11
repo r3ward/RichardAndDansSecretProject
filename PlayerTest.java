@@ -1,38 +1,32 @@
 import org.junit.Assert;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.concurrent.CountDownLatch;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
 
-    @BeforeEach
-    void setUp() {
-    }
-
-    @AfterEach
-    void tearDown() {
-
-    }
 
     @Test
     void makeProcessor() {
-//        Player player = new Player(0, 1);
-//
-//        CountDownLatch latch = new CountDownLatch(1);
-//        player.makeProcessor(latch);
-//
-//        player.Processor processor = getProcessor();
-//        Assert.assertNot
+        Player player = new Player(0, 1);
+        CountDownLatch latch = new CountDownLatch(1);
+        player.makeProcessor(latch);
+        Assert.assertEquals(player.getProcessor(), player.playerProcessor);
     }
 
     @Test
     void getProcessor() {
-
+        Player player = new Player(0, 1);
+        CountDownLatch latch = new CountDownLatch(1);
+        player.makeProcessor(latch);
+        Assert.assertEquals(player.playerProcessor, player.getProcessor());
     }
 
     @Test
@@ -50,7 +44,7 @@ class PlayerTest {
         Player player = new Player(0, 1);
         player.setTotalPlayers(1);
         int totalPlayers = player.getTotalPlayers();
-        Assert.assertEquals(totalPlayers, 1);
+        Assert.assertEquals(1, totalPlayers);
     }
 
     @Test
@@ -58,7 +52,7 @@ class PlayerTest {
         Player player = new Player(0, 1);
         player.setTotalPlayers(1);
         int totalPlayers = player.getTotalPlayers();
-        Assert.assertEquals(totalPlayers, 1);
+        Assert.assertEquals(1, totalPlayers);
     }
 
     @Test
@@ -81,15 +75,19 @@ class PlayerTest {
 
     @Test
     void addCard() {
-        // create deck array
-        // create deck
-        // put deck in array with card
-        // call method on player
-
         CardGame cardGame = new CardGame();
         CardDeck[] deckArray = new CardDeck[1];
-        deckArray = cardGame.generateDecks(deckArray);
+        cardGame.deckArray = deckArray;
 
+        deckArray = cardGame.generateDecks(deckArray);
+        Card card = new Card(1);
+        CardDeck deck = deckArray[0];
+        deck.addTopCard(card);
+
+        Player player = new Player(0, 1);
+        player.addCard();
+        String playerHandString = player.getPlayerHandValues();
+        Assert.assertEquals(playerHandString, " 1");
     }
 
     @Test
@@ -123,15 +121,56 @@ class PlayerTest {
 
     @Test
     void playerDecision() {
-
+        Player player = new Player(0, 1);
+        Card favouriteCard = new Card(0);
+        Card otherCard = new Card(10);
+        player.initialiseHand(favouriteCard);
+        player.initialiseHand(favouriteCard);
+        player.initialiseHand(favouriteCard);
+        player.initialiseHand(otherCard);
+        Card discardCard = player.playerDecision();
+        Assert.assertEquals(discardCard.getCardValue(), otherCard.getCardValue());
     }
 
     @Test
     void createFile() {
+        Player player = new Player(0, 1);
+        player.createFile();
+        boolean exists = false;
+        try{
+            File myObj = new File("player1.txt");
+            if (!myObj.createNewFile()) {
+                exists = true;
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        Assert.assertTrue(exists);
     }
 
     @Test
     void writeToFile() {
+        Player player = new Player(0, 1);
+        long currentTime = System.currentTimeMillis();
+        System.out.println(currentTime);
+        String testValue = "test" + currentTime;
+        player.writeToFile("writeFileTest.txt", testValue);
+        try {
+            File file = new File("writeFileTest.txt");
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+            StringBuffer sb = new StringBuffer();
+            String line;
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+                sb.append("\n");
+            }
+            String[] cardArray = sb.toString().split("\n");
+            System.out.println(Arrays.toString(cardArray));
+            Assert.assertEquals(testValue, cardArray[cardArray.length - 1]);
+        }
+        catch(IOException e) { }
     }
 
     @Test
@@ -143,22 +182,9 @@ class PlayerTest {
     }
 
     @Test
-    void getPlayerDeck() {
-    }
-
-    @Test
-    void setPlayerPosition() {
-    }
-
-    @Test
-    void setFavouriteCard() {
-    }
-
-    @Test
     void getPlayerPosition() {
-    }
-
-    @Test
-    void writeWinToFile() {
+        Player player = new Player(0, 1);
+        int position = player.getPlayerPosition();
+        Assert.assertEquals(position, 0);
     }
 }

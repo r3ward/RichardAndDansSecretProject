@@ -1,25 +1,7 @@
 import org.junit.Assert;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class CardGameTest {
-
-    @org.junit.jupiter.api.BeforeEach
-    void setUp() {
-        CardGame CardGame = new CardGame();
-    }
-
-    @org.junit.jupiter.api.AfterEach
-    void tearDown() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void main() {
-
-    }
 
     @org.junit.jupiter.api.Test
     void fileReader() {
