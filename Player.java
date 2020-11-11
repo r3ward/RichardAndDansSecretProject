@@ -26,6 +26,8 @@ public class Player
     public int playerPosition;
     public int totalPlayers;
     public boolean win;
+
+
     private enum Task { PICKUP, DISCARD }
 
     private Task task;

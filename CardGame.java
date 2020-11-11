@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /**
  * Write a description of class CardGame here.
  *
- * @author (your name) RICHARD WAS ERE
+ * @author (your name) part 2 <<<<
  * @version (8 / 11 / 2020 - 18 : 00)
  */
 public class CardGame
@@ -183,15 +183,5 @@ public class CardGame
         }
         
         System.out.println("Total cards added : " + cardCounter);
-    }
-    
-    //new method
-    public static void terminateDecks(){
-        for(int c = 0; c < 4; c++){    
-            for(int i = 0; i < deckArray.length; i++){
-                CardDeck cardDeck = deckArray[i];
-                cardDeck.deckTerminate();
-            }
-        }
     }
 }
