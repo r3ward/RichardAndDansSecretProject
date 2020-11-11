@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=CardGame
+comment0.text=\n\ Write\ a\ description\ of\ class\ CardGame\ here.\n\n\ @author\ (your\ name)\n\ @version\ (8/11/2020\ -\ 18\:00)\n
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment1.text=\n\ Constructor\ for\ objects\ of\ class\ CardGame\n
+comment10.params=
+comment10.target=void\ terminateDecks()
+comment2.params=nameOfFile\ numberOfPlayers
+comment2.target=java.lang.String\ fileReader(java.lang.String,\ int)
+comment3.params=sb
+comment3.target=java.lang.String[]\ cardArrayGenerator(java.lang.String)
+comment4.params=playerArray\ numberOfPlayers
+comment4.target=void\ generatePeople(Player[],\ int)
+comment5.params=deckArray
+comment5.target=void\ generateDecks(CardDeck[])
+comment6.params=
+comment6.target=CardDeck[]\ getDeckArray()
+comment7.params=
+comment7.target=Player[]\ getPlayerArray()
+comment8.params=
+comment8.target=boolean\ getAtomicBool()
+comment9.params=playerArray\ cardArray\ deckArray
+comment9.target=void\ cardDistribute(Player[],\ java.lang.String[],\ CardDeck[])
+numComments=11
