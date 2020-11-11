@@ -1,8 +1,6 @@
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 
@@ -227,7 +225,6 @@ public class Player
      * Responsible for creating file to output results into
      */
     public void createFile(){
-          File myObj = new File("player" + playerPosition  + ".txt");
     }
 
     /**

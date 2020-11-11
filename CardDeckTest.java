@@ -113,6 +113,8 @@ class CardDeckTest {
             System.out.println(Arrays.toString(cardArray));
             Assert.assertEquals(testValue, cardArray[cardArray.length - 1]);
         }
-        catch(IOException ignored) { }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 }

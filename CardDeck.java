@@ -1,8 +1,7 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.io.FileWriter;   // Import the FileWriter class
-import java.io.IOException;  // Import the IOException class to handle errors
-import java.io.File;  
+
 /**
  * Class built for the card deck. Responsible for storing the cards not in player's hands.
  *
@@ -85,9 +84,9 @@ public class CardDeck
     public void deckTerminate(){
         createFile();
         int[] deckValues = this.getCardDeckValues();
-        String deckValuePrint = "";
+        StringBuilder deckValuePrint = new StringBuilder();
         for(int value : deckValues){
-            deckValuePrint = deckValuePrint + " " + value;
+            deckValuePrint.append(" ").append(value);
         }
         String fileText = "deck" + deckPosition + " contents:" + deckValuePrint;
         writeToFile("deck" + deckPosition  + ".txt", fileText);
@@ -97,7 +96,6 @@ public class CardDeck
      * Creates deck file at root.
      */
     public void createFile(){
-        File myObj = new File("deck" + deckPosition  + ".txt");
     }
 
     /**
