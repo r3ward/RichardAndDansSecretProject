@@ -32,7 +32,6 @@ class PlayerTest {
     @Test
     void getPlayerHandValues() {
         Player player = new Player(0, 1);
-        ArrayList<Card> playerHand = player.createPlayerHand();
         Card card = new Card(1);
         player.initialiseHand(card);
         String playerHandGet = player.getPlayerHandValues();
@@ -66,7 +65,6 @@ class PlayerTest {
     @Test
     void initialiseHand() {
         Player player = new Player(0, 1);
-        ArrayList<Card> playerHand = player.createPlayerHand();
         Card card = new Card(1);
         player.initialiseHand(card);
         String playerHandGet = player.getPlayerHandValues();
@@ -75,11 +73,10 @@ class PlayerTest {
 
     @Test
     void addCard() {
-        CardGame cardGame = new CardGame();
         CardDeck[] deckArray = new CardDeck[1];
-        cardGame.deckArray = deckArray;
+        CardGame.deckArray = deckArray;
 
-        deckArray = cardGame.generateDecks(deckArray);
+        CardGame.generateDecks(deckArray);
         Card card = new Card(1);
         CardDeck deck = deckArray[0];
         deck.addTopCard(card);
@@ -107,8 +104,6 @@ class PlayerTest {
     @Test
     void checkForWin() {
         Player player = new Player(0, 1);
-        Dealer dealer = new Dealer();
-        ArrayList<Card> playerHand = player.createPlayerHand();
         Card card = new Card(0);
         // add 4 identical cards, winning hand
         player.initialiseHand(card);
@@ -138,7 +133,7 @@ class PlayerTest {
         player.createFile();
         boolean exists = false;
         try{
-            File myObj = new File("player1.txt");
+            File myObj = new File("testFileCreation.txt");
             if (!myObj.createNewFile()) {
                 exists = true;
             }
@@ -160,7 +155,7 @@ class PlayerTest {
             File file = new File("writeFileTest.txt");
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
-            StringBuffer sb = new StringBuffer();
+            StringBuilder sb = new StringBuilder();
             String line;
             while ((line = br.readLine()) != null) {
                 sb.append(line);
@@ -170,7 +165,7 @@ class PlayerTest {
             System.out.println(Arrays.toString(cardArray));
             Assert.assertEquals(testValue, cardArray[cardArray.length - 1]);
         }
-        catch(IOException e) { }
+        catch(IOException ignored) { }
     }
 
     @Test

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 class CardDeckTest {
-    
+
     @Test
     void getDeckPosition() {
         CardDeck deck = new CardDeck(0);
@@ -81,7 +81,7 @@ class CardDeckTest {
         deck.createFile();
         boolean exists = false;
         try{
-            File myObj = new File("deck0.txt");
+            File myObj = new File("testCreateFile.txt");
             if (!myObj.createNewFile()) {
                 exists = true;
             }
@@ -103,7 +103,7 @@ class CardDeckTest {
             File file = new File("writeFileTest.txt");
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
-            StringBuffer sb = new StringBuffer();
+            StringBuilder sb = new StringBuilder();
             String line;
             while ((line = br.readLine()) != null) {
                 sb.append(line);
@@ -113,6 +113,6 @@ class CardDeckTest {
             System.out.println(Arrays.toString(cardArray));
             Assert.assertEquals(testValue, cardArray[cardArray.length - 1]);
         }
-        catch(IOException e) { }
+        catch(IOException ignored) { }
     }
 }

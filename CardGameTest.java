@@ -4,7 +4,7 @@ import java.util.Arrays;
 class CardGameTest {
 
     @org.junit.jupiter.api.Test
-    void fileReader() {
+    void fileReader() throws InsufficientCardsException {
         String buffer = CardGame.fileReader("fileReaderTest.txt", 1);
         Assert.assertEquals(buffer, "8\n1\n4\n6\n8\n4\n6\n9\n");
     }
@@ -20,7 +20,7 @@ class CardGameTest {
     void generatePeople() {
         Player[] playerArray = new Player[4];
         Player[] emptyPlayerArray = new Player[4];
-        playerArray = CardGame.generatePeople(playerArray, 4);
+        CardGame.generatePlayers(playerArray, 4);
         Assert.assertNotEquals(playerArray, emptyPlayerArray);
     }
 
@@ -28,17 +28,17 @@ class CardGameTest {
     void generateDecks() {
         CardDeck[] cardDeckArray = new CardDeck[4];
         CardDeck[] emptyCardDeckArray = new CardDeck[4];
-        cardDeckArray = CardGame.generateDecks(cardDeckArray);
+        CardGame.generateDecks(cardDeckArray);
         Assert.assertNotEquals(cardDeckArray, emptyCardDeckArray);
     }
 
     @org.junit.jupiter.api.Test
     void cardDistribute() {
         Player[] playerArray = new Player[1];
-        playerArray = CardGame.generatePeople(playerArray, 1);
+        CardGame.generatePlayers(playerArray, 1);
 
         CardDeck[] deckArray = new CardDeck[1];
-        deckArray = CardGame.generateDecks(deckArray);
+        CardGame.generateDecks(deckArray);
         String[] cardArray = {"1", "2", "3", "4", "5", "6", "7", "8"};
         CardGame.cardDistribute(playerArray, cardArray, deckArray);
 
@@ -54,26 +54,19 @@ class CardGameTest {
 
     @org.junit.jupiter.api.Test
     void getDeckArray() {
-        CardGame cardGame = new CardGame();
-
         CardDeck[] deckArray = new CardDeck[1];
-        deckArray = cardGame.generateDecks(deckArray);
-        cardGame.deckArray = deckArray;
-
-        CardDeck[] deckArrayGet = cardGame.getDeckArray();
+        CardGame.generateDecks(deckArray);
+        CardGame.deckArray = deckArray;
+        CardDeck[] deckArrayGet = CardGame.getDeckArray();
         Assert.assertArrayEquals(deckArray, deckArrayGet);
     }
 
     @org.junit.jupiter.api.Test
     void getPlayerArray() {
-        CardGame cardGame = new CardGame();
-
         Player[] playerArray = new Player[1];
-        playerArray = cardGame.generatePeople(playerArray, 1);
-        cardGame.playerArray = playerArray;
-
-        Player[] playerArrayGet = cardGame.getPlayerArray();
+        CardGame.generatePlayers(playerArray, 1);
+        CardGame.playerArray = playerArray;
+        Player[] playerArrayGet = CardGame.getPlayerArray();
         Assert.assertArrayEquals(playerArray, playerArrayGet);
     }
-
 }

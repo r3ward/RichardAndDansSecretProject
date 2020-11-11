@@ -4,44 +4,55 @@ import java.io.FileWriter;   // Import the FileWriter class
 import java.io.IOException;  // Import the IOException class to handle errors
 import java.io.File;  
 /**
- * Write a description of class CardDeck here.
+ * Class built for the card deck. Responsible for storing the cards not in player's hands.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author 046236, 004306
  */
 public class CardDeck
 {
     public ArrayList<Card> cardArray;
-    public int deckPosition;
+    public final int deckPosition;
     
     /**
      * Constructor for objects of class CardDeck
      */
-    //card deck needs to know what number it is assigned
     public CardDeck(int position)
     {
-        // initialise instance variables
-        cardArray = new ArrayList<Card>();
+        cardArray = new ArrayList<>();
         deckPosition = position;
         cardArray = createCardDeck();
     }
-    
-    public int getDeckPosition(){
-        return this.deckPosition;
+
+    /**
+     * @return deck position
+     */
+    public final int getDeckPosition(){ return this.deckPosition; }
+
+    /**
+     * @return card array
+     */
+    public ArrayList<Card> getCardArray(){ return this.cardArray; }
+
+    /**
+     * Get method to return deck values.
+     *
+     * @return         integer array of card values.
+     */
+    public int[] getCardDeckValues(){
+        int[] cardDeckValues = new int[cardArray.size()];
+        for(int i=0; i < cardArray.size(); i++) {
+            int value = cardArray.get(i).getCardValue();
+            cardDeckValues[i] = value;
+        }
+        return cardDeckValues;
     }
 
-    public synchronized void addTopCard(Card card){
-        cardArray.add(0, card);
-        System.out.println("deck at "+ deckPosition + " : " + Arrays.toString(getCardDeckValues()));
-    }
-    
-    public ArrayList<Card> createCardDeck(){
-        ArrayList<Card> cardArray = new ArrayList<Card>();
-        return cardArray;
-    }
-  
+    /**
+     * Returns top card of card deck.
+     *
+     * @return         top card of type Card.
+     */
     public synchronized Card getTopCard(){
-
         if (cardArray.size() > 0){
             Card topCard = cardArray.get(0);
             cardArray.remove(0);
@@ -49,47 +60,52 @@ public class CardDeck
         }
         return null;
     }
+
+    /**
+     * Adds card to front (index 0) of array list.
+     */
+    public synchronized void addTopCard(Card card){
+        cardArray.add(0, card);
+    }
     
+    public ArrayList<Card> createCardDeck(){
+        return new ArrayList<>();
+    }
+
+    /**
+     * Adds card to rear of array list.
+     */
     public synchronized void addBottomCard(Card card) {
-        // add card to bottom
         cardArray.add(card);
     }
-    
-    public ArrayList<Card> getCardArray(){
-        return cardArray;
-    }
-    
-    public int[] getCardDeckValues(){
-        int[] playerDeckValues = new int[cardArray.size()];
-        for(int i=0; i < cardArray.size(); i++) {
-            int value = cardArray.get(i).getCardValue();
-            playerDeckValues[i] = value;
-        }
-        return playerDeckValues;
-    }
-    
-    //new method
+
+    /**
+     * Creates file for each deck once game has terminated.
+     */
     public void deckTerminate(){
         createFile();
-        String deckValues = Arrays.toString(this.getCardDeckValues());
-        String fileText = "deck " + deckPosition + " contents: " + deckValues;
+        int[] deckValues = this.getCardDeckValues();
+        String deckValuePrint = "";
+        for(int value : deckValues){
+            deckValuePrint = deckValuePrint + " " + value;
+        }
+        String fileText = "deck" + deckPosition + " contents:" + deckValuePrint;
         writeToFile("deck" + deckPosition  + ".txt", fileText);
     }
-    
+
+    /**
+     * Creates deck file at root.
+     */
     public void createFile(){
-        try {
-          File myObj = new File("deck" + deckPosition  + ".txt");
-          if (myObj.createNewFile()) {
-            System.out.println("File created: " + myObj.getName());
-          } else {
-            System.out.println("File already exists.");
-          }
-        } catch (IOException e) {
-          System.out.println("An error occurred.");
-          e.printStackTrace();
-        }
+        File myObj = new File("deck" + deckPosition  + ".txt");
     }
-    
+
+    /**
+     * Get method to return deck values.
+     * @param          fileName the name of file to write to
+     * @param          message the desired message to write
+     * @return         integer array of card values
+     */
     public void writeToFile(String fileName, String message){
         try {
           FileWriter myWriter = new FileWriter(fileName, true);
@@ -97,7 +113,6 @@ public class CardDeck
           myWriter.write("\n");
           myWriter.close();
         } catch (IOException e) {
-          System.out.println("An error occurred whilst printing.");
           e.printStackTrace();
         }
     } 

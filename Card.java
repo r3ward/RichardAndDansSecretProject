@@ -1,23 +1,19 @@
 
 /**
- * Write a description of class Card here.
+ * Simple object class. The card object requires a single parameter, the value of the card.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author 046236, 004306
  */
 public class Card
 {
-    // instance variables - replace the example below with your own
     public final int value;
 
     /**
      * Constructor for objects of class Card
      */
-    //if (beanBagObject != null) every object maybe??
-    public Card(int x)
+    public Card(int cardValue)
     {
-        // initialise instance variables
-        value = x;
+        value = cardValue;
     }
     
     public int getCardValue(){

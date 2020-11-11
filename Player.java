@@ -1,42 +1,30 @@
-import java.io.FileWriter;   // Import the FileWriter class
-import java.io.IOException;  // Import the IOException class to handle errors
-import java.io.File;  // Import the File class
-import java.util.Arrays;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.CountDownLatch;
+
 /**
- * Write a description of class Player here.
+ * Class for player objects.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author 046236, 004306
+ *
  */
 public class Player
 {
-
-    /**[https://github.com/richardpeterwardl/ConcurrencyCardGame.git](https://github.com/richardpeterwardl/ConcurrencyCardGame.git)
-     * Constructor for objects of class Player
-     */
-    private CountDownLatch latch;
-    public CardDeck playerDeck;
-    private ArrayList<Card> playerHand;
-    private int favouriteCard;
+    private final ArrayList<Card> playerHand;
+    private final int favouriteCard;
     public int playerPosition;
     public int totalPlayers;
     public boolean win;
-
-
     private enum Task { PICKUP, DISCARD }
-
     private Task task;
     public Processor playerProcessor;
     
     public Player(int position, int totalPlayers)
     {
-        // array of current hand
-        //copy constructor
         win = false;
         playerPosition = position;
         favouriteCard = position;
@@ -46,34 +34,53 @@ public class Player
         createFile();
     }
 
-
+    /**
+     * Creates processor and assigns attribute.
+     *
+     * @param latch releases all threads once all players ready.
+     */
     public void makeProcessor(CountDownLatch latch){
         playerProcessor = new Processor(latch);
     }
 
-    public Processor getProcessor(){
-        return playerProcessor;
-    }
-    
+    /**
+     *
+     * @return string form of player hand values
+     */
+    public Processor getProcessor(){ return playerProcessor; }
+
+    /**
+     * Returns player hand values in a string
+     *
+     * @return string form of player hand values
+     */
     public String getPlayerHandValues(){
-        String playerHandValues = ""; 
-        for(int i=0; i < playerHand.size(); i++) {
-            int value = playerHand.get(i).getCardValue();
-            playerHandValues = playerHandValues + " " + value;
+        StringBuilder playerHandValues = new StringBuilder();
+        for (Card card : playerHand) {
+            int value = card.getCardValue();
+            playerHandValues.append(" ").append(value);
         }
-        return playerHandValues;
-    }    
-    
-    
+        return playerHandValues.toString();
+    }
+
+    /**
+     * Processor class, responsible for thread creation and assignment to player.
+     * Once players are finished with task, gameStateIterate in dealer class is alerted.
+     * Threads are reallocated once all players have finished their task.
+     *
+     */
     class Processor implements Runnable {
-        private CountDownLatch latch;
+        private final CountDownLatch latch;
     
         public Processor(CountDownLatch latch) {
             this.latch = latch;
         }
-    
+
+        /**
+         * Responsible for coordinating task to be completed
+         */
         public void run() {
-            boolean stop = false;
+            boolean stop;
             switch(task){
                 case DISCARD:
                     stop = checkForWin();
@@ -90,7 +97,6 @@ public class Player
                         task = Task.DISCARD;
                     }
                     writeToFile("player" + playerPosition  + ".txt", "Player " + playerPosition + " current hand: " + getPlayerHandValues());
-                    System.out.println("Player " + playerPosition + " current hand: " + getPlayerHandValues());
                     break;
             }
             
@@ -98,37 +104,57 @@ public class Player
             playerProcessor = null;
         }
     }
-    
+
+    /**
+     * Set method.
+     *
+     * @param totalPlayers total players in game
+     */
     public void setTotalPlayers (int totalPlayers){
         this.totalPlayers = totalPlayers;
     }
-    
+
+    /**
+     * @return total players
+     */
     public int getTotalPlayers(){
         return this.totalPlayers;
     }
-      
-    
+
+    /**
+     * @return player hand
+     */
     public ArrayList<Card> createPlayerHand(){
-        ArrayList<Card> playerHand = new ArrayList<Card>();
-        return playerHand;
+        return new ArrayList<>();
     }
 
+    /**
+     * Method to add cards to hand during dealing.
+     *
+     * @param card card to be added to player hand.
+     */
     public void initialiseHand(Card card){
         playerHand.add(0, card);
         this.checkForWin();
     }
-    
-  
+
+    /**
+     * Add card to player hand from the deck on the left.
+     */
     public void addCard(){
         CardDeck[] deckArray = CardGame.getDeckArray();
-        System.out.println(deckArray);
         CardDeck leftDeck = deckArray[playerPosition];
         Card newCard = leftDeck.getTopCard();
         playerHand.add(newCard);
         writeToFile("player" + playerPosition  + ".txt", "Player " + playerPosition + " draws a " + newCard.getCardValue() + " from deck " + leftDeck.getDeckPosition());
-        System.out.println("Player " + playerPosition + " draws a " + newCard.getCardValue() + " from deck " + leftDeck.getDeckPosition());
-    }    
-    
+    }
+
+    /**
+     * Method to remove card and add to deck on right of player.
+     *
+     * @param card card to be removed
+     * @param totalPlayers total players in game
+     */
     public void removeCard(Card card, int totalPlayers){        
         playerHand.remove(card);
         
@@ -139,10 +165,14 @@ public class Player
         
         CardDeck[] deckArray = CardGame.getDeckArray();
         deckArray[rightDeckIndex].addBottomCard(card);
-        System.out.println("Player " + playerPosition + " discards a " + card.getCardValue() + " to deck " + rightDeckIndex);
         writeToFile("player" + playerPosition  + ".txt", "Player " + playerPosition + " discards a " + card.getCardValue() + " to deck " + rightDeckIndex);
     }
-    
+
+    /**
+     * Check if player has a winning hand.
+     *
+     * @return boolean result
+     */
     public boolean checkForWin(){
         int tempCardValue = 0;
         boolean win = true;
@@ -163,52 +193,49 @@ public class Player
         else{
             win = false;
         }
-        
         this.win = win;
-        
         if (win){
             writeToFile("player" + playerPosition  + ".txt", "Player " + playerPosition + " wins");
             writeToFile("player" + playerPosition  + ".txt", "Player " + playerPosition + " exits.");
             writeToFile("player" + playerPosition  + ".txt", "Player " + playerPosition + " final hand: " + getPlayerHandValues());
-            System.out.println("Player " + playerPosition + " wins");
-            Dealer.setWin(win, playerPosition);
+            Dealer.setWin(true, playerPosition);
             return true;
         }
         else{
             return false;
         }
     }
-    
+
+    /**
+     * Responsible for player decision making. It will always hold the player's favourite card.
+     *
+     * @return card to be discarded.
+     */
     public Card playerDecision(){
         Random random = new Random();
         ArrayList<Card> discardCards = this.createPlayerHand();
 
-        for(int i = 0; i < playerHand.size(); i++){
-            Card chosenCard = playerHand.get(i);
-            if(chosenCard.getCardValue() != favouriteCard){
-                Card tempCard = playerHand.get(i);
-                discardCards.add(tempCard);
+        for (Card chosenCard : playerHand) {
+            if (chosenCard.getCardValue() != favouriteCard) {
+                discardCards.add(chosenCard);
             }
         }
-        
-        Card discardCard = discardCards.get(random.nextInt(discardCards.size()));
-        return discardCard;
+        return discardCards.get(random.nextInt(discardCards.size()));
     }
-    
+
+    /**
+     * Responsible for creating file to output results into
+     */
     public void createFile(){
-        try {
           File myObj = new File("player" + playerPosition  + ".txt");
-          if (myObj.createNewFile()) {
-            System.out.println("File created: " + myObj.getName());
-          } else {
-            System.out.println("File already exists.");
-          }
-        } catch (IOException e) {
-          System.out.println("An error occurred.");
-          e.printStackTrace();
-        }
     }
-    
+
+    /**
+     * Write string to file.
+     *
+     * @param fileName name of file
+     * @param message string to be written
+     */
     public void writeToFile(String fileName, String message){
         try {
           FileWriter myWriter = new FileWriter(fileName, true);
@@ -216,25 +243,32 @@ public class Player
           myWriter.write("\n");
           myWriter.close();
         } catch (IOException e) {
-          System.out.println("An error occurred whilst printing.");
           e.printStackTrace();
         }
-    }    
-    
+    }
+
+    /**
+     * @return player's hand
+     */
     public ArrayList<Card> getPlayerHand(){
         return playerHand;
     }
 
+    /**
+     * @return return position of player
+     */
     public int getPlayerPosition(){
         return playerPosition;
     }
-    
+
+    /**
+     * Write the winning player to non-winning player's files.
+     *
+     * @param winningPlayerPosition position of winning player.
+     */
     public void writeWinToFile(int winningPlayerPosition){
         writeToFile("player" + playerPosition  + ".txt", "Player " + winningPlayerPosition + " has informed player " + this.playerPosition + " that player "+ winningPlayerPosition + " has won.");
         writeToFile("player" + playerPosition  + ".txt", "Player " + this.playerPosition + " exits.");
         writeToFile("player" + playerPosition  + ".txt", "Player " + this.playerPosition + " hand: " + getPlayerHandValues());
-
-        System.out.println("Player " + winningPlayerPosition + " has informed player " + this.playerPosition + " that they have won.");
     }
-
 }

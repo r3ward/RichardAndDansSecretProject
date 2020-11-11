@@ -5,9 +5,8 @@ class DealerTest {
 
     @Test
     void setWin() {
-        Dealer testDealer = new Dealer();
-        testDealer.setWin(true, 0);
-        boolean resultBool = testDealer.win.get();
-        Assert.assertEquals(true, resultBool);
+        Dealer.setWin(true, 0);
+        boolean resultBool = Dealer.win.get();
+        Assert.assertTrue(resultBool);
     }
 }
