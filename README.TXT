@@ -1,12 +1,16 @@
-------------------------------------------------------------------------
-This is the project README file. Here, you should describe your project.
-Tell the reader (someone who does not know anything about this project)
-all he/she needs to know. The comments should usually include at least:
-------------------------------------------------------------------------
+PROJECT TITLE: Concurrency Card Game
+VERSION or DATE: 11/11/2020
 
-PROJECT TITLE:
-PURPOSE OF PROJECT:
-VERSION or DATE:
-HOW TO START THIS PROJECT:
-AUTHORS:
-USER INSTRUCTIONS:
+To start Project:
+  Make sure you have a text file(.txt) with in the current directory of CardGame.jar
+  Run CardGame, enter the number of players and where the file is located.
+  View output
+
+Test suite run requirements:
+Dependances: 
+  JDK 11
+  Junit 5.4.2
+  Add configuration: JUnit:  Testing: All in package
+
+AUTHORS: <<Put Candidate numbers
+
