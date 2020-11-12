@@ -7,10 +7,16 @@ To start Project:
   View output
 
 Test suite run requirements:
-Dependances: 
+    Begin by creating a new JUnit configuration. Add the following credentials.
+      Name: ConcurrencyCardGameTestSuite
+      VM options: -ea
+      Working directory: $MODULE_WORKING_DIR$
+
+Dependencies:
   JDK 11
   Junit 5.4.2
   Add configuration: JUnit:  Testing: All in package
 
-AUTHORS: <<Put Candidate numbers
+AUTHORS: 046236, 004306
+
 

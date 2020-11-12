@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -54,10 +55,11 @@ public class CardGame
                 System.out.println("Please enter the file name.");
            }
        }
-       
+
        String fileReaderTest = fileReader(fileName, numberOfPlayers);
         assert fileReaderTest != null;
         String[] cardArray = cardArrayGenerator(fileReaderTest);
+
        playerArray = new Player[numberOfPlayers];
        deckArray = new CardDeck[numberOfPlayers];
        
@@ -85,29 +87,34 @@ public class CardGame
      */
     public static String fileReader(String nameOfFile, int numberOfPlayers) throws InsufficientCardsException
     {
-        try  
-            {  
-                File file=new File(nameOfFile);
-                FileReader fr=new FileReader(file);   
-                BufferedReader br=new BufferedReader(fr);  
-                StringBuilder sb=new StringBuilder();
-                String line;  
+        try {
+            try {
+                File file = new File(nameOfFile);
+                FileReader fr = new FileReader(file);
+                BufferedReader br = new BufferedReader(fr);
+                StringBuilder sb = new StringBuilder();
+                String line;
                 // ensure no more than 8n cards are loaded in
                 int counter = 8 * numberOfPlayers;
-                while((line=br.readLine())!=null || counter <= 0) {
+                while ((line = br.readLine()) != null || counter <= 0) {
                     sb.append(line);
                     sb.append("\n");
                     counter--;
-                    if(counter == 0){
+                    if (counter == 0) {
                         break;
                     }
-                }  
-                if (counter > 0){
+                }
+                if (counter > 0) {
                     throw new InsufficientCardsException("Your file does not contain enough cards! Add " + counter + " more card(s) to your file.");
                 }
                 fr.close();
                 return sb.toString();
-                }  
+            } catch (FileNotFoundException e) {
+                System.out.println("The file could not be found. Please try again.");
+                e.printStackTrace();
+                return null;
+            }
+        }
         catch(IOException e)  
            {
                System.out.println("The file could not be found. Please try again.");
